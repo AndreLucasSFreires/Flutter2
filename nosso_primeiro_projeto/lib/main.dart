@@ -25,9 +25,10 @@ class MyApp extends StatelessWidget {
         primarySwatch: Colors.blue,
       ),
       home: Stack(//stack pode ter vários filhos
+        alignment: AlignmentDirectional.center,
         children: [
-          Container(color: Colors.red),
-          Container(color: Colors.blue,width: 100,)
+          Container(color: Colors.red,width: 100, height: 100, ),
+          Container(color: Colors.blue,width: 50,height: 50,)
         ],
       ),
     );
