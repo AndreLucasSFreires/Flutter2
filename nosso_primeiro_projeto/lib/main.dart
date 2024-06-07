@@ -52,6 +52,9 @@ class MyApp extends StatelessWidget {
                 Container(color: Colors.pinkAccent,width: 50,height: 50,),
                 Container(color: Colors.purple,width: 50,height: 50,)
               ],
+            ),
+            Container(color: Colors.amber,height: 30, width: 300,
+            child: Text('Diamante amarelo'),
             )
           ],
         ),
