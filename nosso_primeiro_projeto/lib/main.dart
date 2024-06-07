@@ -26,6 +26,7 @@ class MyApp extends StatelessWidget {
       ),
       home: Column(
         mainAxisAlignment: MainAxisAlignment.center,//eixo principal de alimento (coluna = veritical), espaçamento vertical
+        crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Container(color: Colors.red,width: 100, height: 100, ),
           Container(color: Colors.blue,width: 50,height: 50,)
