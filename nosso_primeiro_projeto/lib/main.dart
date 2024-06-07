@@ -25,7 +25,8 @@ class MyApp extends StatelessWidget {
         primarySwatch: Colors.blue,
       ),
       home: Row(
-        mainAxisAlignment: MainAxisAlignment.center, //verificar o alinhamento horizontal neste caso.
+        mainAxisAlignment: MainAxisAlignment.spaceEvenly, //verificar o alinhamento horizontal neste caso.
+        crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Container(color: Colors.red,width: 100, height: 100, ),
           Container(color: Colors.blue,width: 50,height: 50,)
