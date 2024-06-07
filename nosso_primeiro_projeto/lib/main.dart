@@ -24,9 +24,11 @@ class MyApp extends StatelessWidget {
         // is not restarted.
         primarySwatch: Colors.blue,
       ),
-      home: Container(
-        color: Colors.white,
-        child: Container(color: Colors.blue),
+      home: Stack(//stack pode ter vários filhos
+        children: [
+          Container(color: Colors.red),
+          Container(color: Colors.blue,width: 100,)
+        ],
       ),
     );
   }
