@@ -24,10 +24,9 @@ class MyApp extends StatelessWidget {
         // is not restarted.
         primarySwatch: Colors.blue,
       ),
-      home: Column(
-        mainAxisAlignment: MainAxisAlignment.center,//eixo principal de alimento (coluna = veritical), espaçamento vertical
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [ //para colocar um container lado a lado, iremos utilizar outro Widget, no próximo commit..
+      home: Row(
+        mainAxisAlignment: MainAxisAlignment.center, //verificar o alinhamento horizontal neste caso.
+        children: [
           Container(color: Colors.red,width: 100, height: 100, ),
           Container(color: Colors.blue,width: 50,height: 50,)
         ],
