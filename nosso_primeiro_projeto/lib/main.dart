@@ -24,7 +24,7 @@ class MyApp extends StatelessWidget {
         // is not restarted.
         primarySwatch: Colors.blue,
       ),
-      home: Stack(//stack pode ter vários filhos
+      home: Stack(//stack pode ter vários filhos, mas não permite colocar um container do lado do outro
         alignment: AlignmentDirectional.center,
         children: [
           Container(color: Colors.red,width: 100, height: 100, ),
