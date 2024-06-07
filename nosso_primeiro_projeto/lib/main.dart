@@ -90,7 +90,12 @@ class MyApp extends StatelessWidget {
                   style: TextStyle(color: Colors.pinkAccent, fontSize: 28),
                   textAlign: TextAlign.center,
                 ),
-              )
+              ),
+              ElevatedButton(
+                  onPressed: () {
+                    print('Você apertou o botão');
+                  },
+                  child: Text('Aperte o botao!'))
             ],
           ),
         ));
