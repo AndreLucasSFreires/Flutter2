@@ -24,13 +24,12 @@ class MyApp extends StatelessWidget {
         // is not restarted.
         primarySwatch: Colors.blue,
       ),
-      home: Stack(//stack pode ter vários filhos, mas não permite colocar um container do lado do outro
-        alignment: AlignmentDirectional.center,
+      home: Column(
         children: [
           Container(color: Colors.red,width: 100, height: 100, ),
           Container(color: Colors.blue,width: 50,height: 50,)
         ],
-      ),
+      )
     );
   }
 }
