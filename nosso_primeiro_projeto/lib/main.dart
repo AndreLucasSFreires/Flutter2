@@ -29,9 +29,9 @@ class MyApp extends StatelessWidget {
           body: Column(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              Task(),
-              Task(),
-              Task(),
+              Task('Aprender Flutter'),
+              Task('Andar de Bike'),
+              Task('Orar'),
             ],
           ),
           floatingActionButton: FloatingActionButton(onPressed: () {}),
@@ -40,7 +40,8 @@ class MyApp extends StatelessWidget {
 }
 
 class Task extends StatelessWidget {
-  const Task({Key? key}) : super(key: key);
+  final String nome;
+  const Task(this.nome, {Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -62,7 +63,7 @@ class Task extends StatelessWidget {
                   width: 72,
                   height: 100,
                 ),
-                Text('Aprender flutter'),
+                Text(nome),
                 ElevatedButton(onPressed: (){}, child: Icon(Icons.arrow_drop_up))
               ],
             ),
