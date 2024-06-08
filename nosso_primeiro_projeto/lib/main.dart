@@ -26,33 +26,50 @@ class MyApp extends StatelessWidget {
         ),
         home: Scaffold(
           appBar: AppBar(title: Text('Tarefas')),
-          body: Container(
-            child: Stack(
-              children: [
-                Container(
-                  color: Colors.blue,
-                  height: 140,
-                ),
-                Container(
-                  color: Colors.white54,
-                  height: 100,
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      Container(
-                        color: Colors.black26,
-                        width: 72,
-                        height: 100,
-                      ),
-                      Text('Aprender flutter'),
-                      ElevatedButton(onPressed: (){}, child: Icon(Icons.arrow_drop_up))
-                    ],
-                  ),
-                )
-              ],
-            ),
+          body: Column(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              Task(),
+              Task(),
+              Task(),
+            ],
           ),
           floatingActionButton: FloatingActionButton(onPressed: () {}),
         ));
   }
 }
+
+class Task extends StatelessWidget {
+  const Task({Key? key}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      child: Stack(
+        children: [
+          Container(
+            color: Colors.blue,
+            height: 140,
+          ),
+          Container(
+            color: Colors.white54,
+            height: 100,
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                Container(
+                  color: Colors.black26,
+                  width: 72,
+                  height: 100,
+                ),
+                Text('Aprender flutter'),
+                ElevatedButton(onPressed: (){}, child: Icon(Icons.arrow_drop_up))
+              ],
+            ),
+          )
+        ],
+      ),
+    );
+  }
+}
+
