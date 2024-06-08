@@ -86,7 +86,7 @@ class MyApp extends StatelessWidget {
                 height: 30,
                 width: 270,
                 child: Text(
-                  'Diamante rosa',
+                  'Somos cristãos',
                   style: TextStyle(color: Colors.pinkAccent, fontSize: 28),
                   textAlign: TextAlign.center,
                 ),
