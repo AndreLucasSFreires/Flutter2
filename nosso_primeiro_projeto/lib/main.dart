@@ -28,6 +28,7 @@ class MyApp extends StatelessWidget {
           appBar: AppBar (
             title: Text('Flutter meus primeiros passos')
           ),
+          body: Container(color: Colors.black),
         )
     );
   }
