@@ -30,7 +30,7 @@ class MyApp extends StatelessWidget {
           body: ListView(
             scrollDirection: Axis.vertical,
             children: [
-              Task('Aprender Flutter'),
+              Task('Aprender Flutter no café da manhã comendo sucrilhos doce'),
               Task('Andar de Bike'),
               Task('Orar'),
               Task('Ler a biblia'),
@@ -45,6 +45,7 @@ class MyApp extends StatelessWidget {
 
 class Task extends StatelessWidget {
   final String nome;
+
   const Task(this.nome, {Key? key}) : super(key: key);
 
   @override
@@ -69,8 +70,14 @@ class Task extends StatelessWidget {
                     width: 72,
                     height: 100,
                   ),
-                  Text(nome,style: TextStyle(fontSize: 24),),
-                  ElevatedButton(onPressed: (){}, child: Icon(Icons.arrow_drop_up))
+                  Container(
+                    width: 200,
+                      child: Text(
+                    nome,
+                    style: TextStyle(fontSize: 24),
+                  )),
+                  ElevatedButton(
+                      onPressed: () {}, child: Icon(Icons.arrow_drop_up))
                 ],
               ),
             )
@@ -80,4 +87,3 @@ class Task extends StatelessWidget {
     );
   }
 }
-
