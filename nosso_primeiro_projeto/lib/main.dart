@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/rendering.dart';
 
 void main() {
   runApp(const MyApp());
@@ -26,12 +27,15 @@ class MyApp extends StatelessWidget {
         ),
         home: Scaffold(
           appBar: AppBar(title: Text('Tarefas')),
-          body: Column(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          body: ListView(
+            scrollDirection: Axis.horizontal,
             children: [
               Task('Aprender Flutter'),
               Task('Andar de Bike'),
               Task('Orar'),
+              Task('Ler a biblia'),
+              Task('Estudar 1'),
+              Task('Estudar 2'),
             ],
           ),
           floatingActionButton: FloatingActionButton(onPressed: () {}),
