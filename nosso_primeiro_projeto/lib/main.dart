@@ -29,6 +29,7 @@ class MyApp extends StatelessWidget {
             title: Text('Flutter meus primeiros passos')
           ),
           body: Container(color: Colors.black),
+          floatingActionButton: FloatingActionButton(onPressed: (){}),
         )
     );
   }
