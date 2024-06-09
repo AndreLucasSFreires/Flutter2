@@ -50,6 +50,7 @@ class Task extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    int nivel = 0;
     return Padding(
       padding: const EdgeInsets.all(8.0),
       child: Container(
@@ -83,7 +84,7 @@ class Task extends StatelessWidget {
                     ],
                   ),
                 ),
-                Text('Nivel 0', style: TextStyle(color: Colors.white, fontSize: 16),)
+                Text('Nivel $nivel', style: TextStyle(color: Colors.white, fontSize: 16),)
               ],
             ),
           ],
