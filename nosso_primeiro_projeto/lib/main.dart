@@ -74,13 +74,13 @@ class Task extends StatelessWidget {
                     width: 200,
                       child: Text(
                     nome,
-                    style: TextStyle(fontSize: 24),
+                    style: TextStyle(fontSize: 24, overflow: TextOverflow.ellipsis),
                   )),
                   ElevatedButton(
                       onPressed: () {}, child: Icon(Icons.arrow_drop_up))
                 ],
               ),
-            )
+            ),
           ],
         ),
       ),
