@@ -96,10 +96,19 @@ class _TaskState extends State<Task> {
                     ],
                   ),
                 ),
-                Text(
-                  'Nivel $nivel',
-                  style: TextStyle(color: Colors.white, fontSize: 16),
-                )
+                Row(
+                  children: [
+                    LinearProgressIndicator(
+                      
+                    ),
+                    Text(
+                      'Nivel $nivel',
+                      style: TextStyle(color: Colors.white, fontSize: 16),
+                    ),
+
+                  ],
+                ),
+
               ],
             ),
           ],
