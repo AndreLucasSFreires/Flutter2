@@ -53,9 +53,9 @@ class Task extends StatefulWidget {
 }
 
 class _TaskState extends State<Task> {
+  int nivel = 0;
   @override
   Widget build(BuildContext context) {
-    int nivel = 0;
     return Padding(
       padding: const EdgeInsets.all(8.0),
       child: Container(
@@ -87,7 +87,9 @@ class _TaskState extends State<Task> {
                           )),
                       ElevatedButton(
                           onPressed: () {
-                            nivel++;
+                            setState((){
+                              nivel++;
+                            });
                             print(nivel);
                           },
                           child: Icon(Icons.arrow_drop_up))
