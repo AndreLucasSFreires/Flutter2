@@ -100,7 +100,10 @@ class _TaskState extends State<Task> {
                 Row(
                   children: [
                     Container(
-                      child: LinearProgressIndicator(),
+                      child: LinearProgressIndicator(
+                        color: Colors.white,
+                        value: 0,
+                      ),
                       width: 200,
                     ),
                     Text(
