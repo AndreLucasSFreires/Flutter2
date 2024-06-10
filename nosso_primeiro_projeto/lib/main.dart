@@ -54,6 +54,7 @@ class Task extends StatefulWidget {
 
 class _TaskState extends State<Task> {
   int nivel = 0;
+
   @override
   Widget build(BuildContext context) {
     return Padding(
@@ -87,7 +88,7 @@ class _TaskState extends State<Task> {
                           )),
                       ElevatedButton(
                           onPressed: () {
-                            setState((){
+                            setState(() {
                               nivel++;
                             });
                             print(nivel);
@@ -98,17 +99,16 @@ class _TaskState extends State<Task> {
                 ),
                 Row(
                   children: [
-                    LinearProgressIndicator(
-                      
+                    Container(
+                      child: LinearProgressIndicator(),
+                      width: 200,
                     ),
                     Text(
                       'Nivel $nivel',
                       style: TextStyle(color: Colors.white, fontSize: 16),
                     ),
-
                   ],
                 ),
-
               ],
             ),
           ],
