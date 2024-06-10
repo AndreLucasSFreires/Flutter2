@@ -26,7 +26,7 @@ class MyApp extends StatelessWidget {
           primarySwatch: Colors.blue,
         ),
         home: Scaffold(
-          appBar: AppBar(title: Text('Tarefas')),
+          appBar: AppBar(leading: Container(), title: Text('Tarefas')),
           body: ListView(
             scrollDirection: Axis.vertical,
             children: [
