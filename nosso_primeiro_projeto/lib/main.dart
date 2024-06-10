@@ -95,7 +95,12 @@ class _TaskState extends State<Task> {
                                 });
                                 print(nivel);
                               },
-                              child: Icon(Icons.arrow_drop_up)),
+                              child: Column(
+                                children: [
+                                  Icon(Icons.arrow_drop_up),
+                                  Text('aumentar',style: TextStyle(fontSize: 10),)
+                                ],
+                              )),
                           ElevatedButton(
                               onPressed: () {
                                 setState(() {
@@ -103,7 +108,12 @@ class _TaskState extends State<Task> {
                                 });
                                 print(nivel);
                               },
-                              child: Icon(Icons.arrow_drop_down))
+                              child: Column(
+                                children: [
+                                  Icon(Icons.arrow_drop_down),
+                                  Text('diminuir',style: TextStyle(fontSize: 10),)
+                                ],
+                              ))
                         ],
                       ),
                     ],
