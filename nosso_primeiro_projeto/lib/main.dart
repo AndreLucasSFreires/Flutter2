@@ -86,30 +86,69 @@ class _TaskState extends State<Task> {
                             style: TextStyle(
                                 fontSize: 24, overflow: TextOverflow.ellipsis),
                           )),
-                      ElevatedButton(
-                          onPressed: () {
-                            setState(() {
-                              nivel++;
-                            });
-                            print(nivel);
-                          },
-                          child: Icon(Icons.arrow_drop_up))
+                      Column(
+                        children: [
+                          ElevatedButton(
+                              onPressed: () {
+                                setState(() {
+                                  nivel++;
+                                });
+                                print(nivel);
+                              },
+                              child: Icon(Icons.arrow_drop_up)),
+                          ElevatedButton(
+                              onPressed: () {
+                                setState(() {
+                                  nivel--;
+                                });
+                                print(nivel);
+                              },
+                              child: Icon(Icons.arrow_drop_down))
+                        ],
+                      ),
                     ],
                   ),
                 ),
                 Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
-                    Container(
-                      child: LinearProgressIndicator(
-                        color: Colors.white,
-                        value: nivel / 10,
+                    Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: Container(
+                        child: LinearProgressIndicator(
+                          color: Colors.white,
+                          value: nivel / 10,
+                        ),
+                        width: 200,
                       ),
-                      width: 200,
                     ),
-                    Text(
-                      'Nivel $nivel',
-                      style: TextStyle(color: Colors.white, fontSize: 16),
+                    Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: Text(
+                        'Nivel $nivel',
+                        style: TextStyle(color: Colors.white, fontSize: 16),
+                      ),
                     ),
+                    Container(
+                      width: 60,
+                      child: ElevatedButton(
+                          style: ButtonStyle(backgroundColor:
+                              MaterialStateProperty.resolveWith((states) {
+                            if (states.contains(MaterialState.pressed)) {
+                              return Colors.green;
+                            }
+                            return Colors.red;
+                          })),
+                          onPressed: () {
+                            setState(() {
+                              nivel = 0;
+                            });
+                          },
+                          child: Text(
+                            'Zerar',
+                            style: TextStyle(fontSize: 10),
+                          )),
+                    )
                   ],
                 ),
               ],
