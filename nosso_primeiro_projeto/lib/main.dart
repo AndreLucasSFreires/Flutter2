@@ -30,12 +30,13 @@ class MyApp extends StatelessWidget {
           body: ListView(
             scrollDirection: Axis.vertical,
             children: [
-              Task('Aprender Flutter no café da manhã comendo sucrilhos doce'),
-              Task('Andar de Bike'),
-              Task('Orar'),
-              Task('Ler a biblia'),
-              Task('Estudar 1'),
-              Task('Estudar 2'),
+              Task('Aprender Flutter',
+                  'https://pbs.twimg.com/media/Eu7m692XIAEvxxP?format=png&name=large'),
+              Task('Andar de Bike', ''),
+              Task('Orar', ''),
+              Task('Ler a biblia', ''),
+              Task('Estudar 1', ''),
+              Task('Estudar 2', ''),
             ],
           ),
           floatingActionButton: FloatingActionButton(onPressed: () {}),
@@ -45,8 +46,9 @@ class MyApp extends StatelessWidget {
 
 class Task extends StatefulWidget {
   final String nome;
+  final String foto;
 
-  const Task(this.nome, {Key? key}) : super(key: key);
+  const Task(this.nome, this.foto, {Key? key}) : super(key: key);
 
   @override
   State<Task> createState() => _TaskState();
@@ -78,9 +80,7 @@ class _TaskState extends State<Task> {
                           color: Colors.black26,
                           width: 72,
                           height: 100,
-                          child: Image.network(
-                              'https://pbs.twimg.com/media/Eu7m692XIAEvxxP?format=png&name=large',
-                          fit: BoxFit.cover)),
+                          child: Image.network(widget.foto, fit: BoxFit.cover)),
                       Container(
                           width: 200,
                           child: Text(
