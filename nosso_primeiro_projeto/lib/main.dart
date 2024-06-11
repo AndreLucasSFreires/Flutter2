@@ -75,12 +75,12 @@ class _TaskState extends State<Task> {
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
                       Container(
-                        color: Colors.black26,
-                        width: 72,
-                        height: 100,
-                        child:
-                          Image.network('https://pbs.twimg.com/media/Eu7m692XIAEvxxP?format=png&name=large')
-                      ),
+                          color: Colors.black26,
+                          width: 72,
+                          height: 100,
+                          child: Image.network(
+                              'https://pbs.twimg.com/media/Eu7m692XIAEvxxP?format=png&name=large',
+                          fit: BoxFit.cover)),
                       Container(
                           width: 200,
                           child: Text(
@@ -98,11 +98,15 @@ class _TaskState extends State<Task> {
                                 print(nivel);
                               },
                               child: Column(
-                                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceEvenly,
                                 crossAxisAlignment: CrossAxisAlignment.center,
                                 children: [
                                   Icon(Icons.arrow_drop_up),
-                                  Text('aumentar',style: TextStyle(fontSize: 10),)
+                                  Text(
+                                    'aumentar',
+                                    style: TextStyle(fontSize: 10),
+                                  )
                                 ],
                               )),
                           ElevatedButton(
@@ -115,7 +119,10 @@ class _TaskState extends State<Task> {
                               child: Column(
                                 children: [
                                   Icon(Icons.arrow_drop_down),
-                                  Text('diminuir',style: TextStyle(fontSize: 10),)
+                                  Text(
+                                    'diminuir',
+                                    style: TextStyle(fontSize: 10),
+                                  )
                                 ],
                               ))
                         ],
