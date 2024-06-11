@@ -78,6 +78,8 @@ class _TaskState extends State<Task> {
                         color: Colors.black26,
                         width: 72,
                         height: 100,
+                        child:
+                          Image.network('https://pbs.twimg.com/media/Eu7m692XIAEvxxP?format=png&name=large')
                       ),
                       Container(
                           width: 200,
