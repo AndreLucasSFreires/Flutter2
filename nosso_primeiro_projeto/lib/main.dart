@@ -96,6 +96,8 @@ class _TaskState extends State<Task> {
                                 print(nivel);
                               },
                               child: Column(
+                                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                                crossAxisAlignment: CrossAxisAlignment.center,
                                 children: [
                                   Icon(Icons.arrow_drop_up),
                                   Text('aumentar',style: TextStyle(fontSize: 10),)
