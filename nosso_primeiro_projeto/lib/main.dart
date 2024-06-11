@@ -81,13 +81,26 @@ class _TaskState extends State<Task> {
                           width: 72,
                           height: 100,
                           child: Image.network(widget.foto, fit: BoxFit.cover)),
-                      Container(
-                          width: 200,
-                          child: Text(
-                            widget.nome,
-                            style: TextStyle(
-                                fontSize: 24, overflow: TextOverflow.ellipsis),
-                          )),
+                      Column(
+                        children: [
+                          Container(
+                              width: 200,
+                              child: Text(
+                                widget.nome,
+                                style: TextStyle(
+                                    fontSize: 24, overflow: TextOverflow.ellipsis),
+                              )),
+                          Row(
+                            children: [
+                              Icon(Icons.star),
+                              Icon(Icons.star),
+                              Icon(Icons.star),
+                              Icon(Icons.star),
+                              Icon(Icons.star),
+                            ],
+                          )
+                        ],
+                      ),
                       Column(
                         children: [
                           ElevatedButton(
