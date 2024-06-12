@@ -82,6 +82,8 @@ class _TaskState extends State<Task> {
                           height: 100,
                           child: Image.network(widget.foto, fit: BoxFit.cover)),
                       Column(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           Container(
                               width: 200,
