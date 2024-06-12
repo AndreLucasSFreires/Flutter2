@@ -31,12 +31,12 @@ class MyApp extends StatelessWidget {
             scrollDirection: Axis.vertical,
             children: [
               Task('Aprender Flutter',
-                  'https://pbs.twimg.com/media/Eu7m692XIAEvxxP?format=png&name=large'),
-              Task('Andar de Bike', 'https://images.pexels.com/photos/161172/cycling-bike-trail-sport-161172.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1'),
-              Task('Orar', 'https://files.adventistas.org/noticias/pt/2022/01/10d64508-aa34-44b6-8ca0-56e656d2714b.jpg'),
-              Task('Ler a biblia', 'https://www.miliciadaimaculada.org.br/source/files/c/7011/A_Biblia_Sagrada-249504_1208-800-0-0.jpg'),
-              Task('Estudar 1', 'https://cdn.aprovadoapp.com.br/blog/midia/artigo4-capa.jpg'),
-              Task('Estudar 2', 'https://guiadoestudante.abril.com.br/wp-content/uploads/sites/4/2017/08/istock-527665536.jpg?quality=100&strip=info&w=1280&h=720&crop=1'),
+                  'https://pbs.twimg.com/media/Eu7m692XIAEvxxP?format=png&name=large',3),
+              Task('Andar de Bike', 'https://images.pexels.com/photos/161172/cycling-bike-trail-sport-161172.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1',2),
+              Task('Orar', 'https://files.adventistas.org/noticias/pt/2022/01/10d64508-aa34-44b6-8ca0-56e656d2714b.jpg',5),
+              Task('Ler a biblia', 'https://www.miliciadaimaculada.org.br/source/files/c/7011/A_Biblia_Sagrada-249504_1208-800-0-0.jpg',4),
+              Task('Estudar 1', 'https://cdn.aprovadoapp.com.br/blog/midia/artigo4-capa.jpg',5),
+              Task('Ver Youtube', 'https://img-21.ccm2.net/Xzq57YZf4NBgVTpboohRrfgvWg4=/500x/22db3f0595ee4cb29016a4ef46e57dc1/ccm-faq/123rf_bloomua.jpg',1),
             ],
           ),
           floatingActionButton: FloatingActionButton(onPressed: () {}),
@@ -47,8 +47,9 @@ class MyApp extends StatelessWidget {
 class Task extends StatefulWidget {
   final String nome;
   final String foto;
+  final int dificuldade;
 
-  const Task(this.nome, this.foto, {Key? key}) : super(key: key);
+  const Task(this.nome, this.foto, this.dificuldade, {Key? key}) : super(key: key);
 
   @override
   State<Task> createState() => _TaskState();
