@@ -159,7 +159,9 @@ class _TaskState extends State<Task> {
                       child: Container(
                         child: LinearProgressIndicator(
                           color: Colors.white,
-                          value: nivel / 10,
+                          value: (widget.dificuldade > 0) ?
+                          (nivel / widget.dificuldade) / 10
+                          : 1,
                         ),
                         width: 200,
                       ),
