@@ -95,7 +95,8 @@ class _TaskState extends State<Task> {
                               )),
                           Row(
                             children: [
-                              Icon(Icons.star,size:15,color: Colors.blue),
+                              Icon(Icons.star,size:15,color: (widget.dificuldade) >= 1 ? Colors.blue
+                                : Colors.blue[100]),
                               Icon(Icons.star,size:15,color: Colors.blue),
                               Icon(Icons.star,size:15,color: Colors.blue),
                               Icon(Icons.star,size:15,color: Colors.blue[100],),
