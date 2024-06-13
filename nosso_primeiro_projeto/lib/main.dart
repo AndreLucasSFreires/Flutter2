@@ -6,7 +6,7 @@ void main() {
 }
 
 class MyApp extends StatelessWidget {
-   MyApp({Key? key}) : super(key: key);
+  MyApp({Key? key}) : super(key: key);
 
   bool opacidade = true;
 
@@ -30,7 +30,7 @@ class MyApp extends StatelessWidget {
         home: Scaffold(
           appBar: AppBar(leading: Container(), title: Text('Tarefas')),
           body: AnimatedOpacity(
-            opacity: opacidade ? 1: 0,
+            opacity: opacidade ? 1 : 0,
             duration: Duration(milliseconds: 800),
             child: ListView(
               scrollDirection: Axis.vertical,
@@ -62,7 +62,10 @@ class MyApp extends StatelessWidget {
               ],
             ),
           ),
-          floatingActionButton: FloatingActionButton(onPressed: () {}),
+          floatingActionButton: FloatingActionButton(onPressed: () {
+            opacidade = !opacidade;
+          },
+          child: Icon(Icons.remove_red_eye),),
         ));
   }
 }
