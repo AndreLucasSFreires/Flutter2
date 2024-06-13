@@ -2,11 +2,13 @@ import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 
 void main() {
-  runApp(const MyApp());
+  runApp(MyApp());
 }
 
 class MyApp extends StatelessWidget {
-  const MyApp({Key? key}) : super(key: key);
+   MyApp({Key? key}) : super(key: key);
+
+  bool opacidade = true;
 
   // This widget is the root of your application.
   @override
@@ -28,7 +30,7 @@ class MyApp extends StatelessWidget {
         home: Scaffold(
           appBar: AppBar(leading: Container(), title: Text('Tarefas')),
           body: AnimatedOpacity(
-            opacity: 1,
+            opacity: opacidade ? 1: 0,
             duration: Duration(milliseconds: 800),
             child: ListView(
               scrollDirection: Axis.vertical,
