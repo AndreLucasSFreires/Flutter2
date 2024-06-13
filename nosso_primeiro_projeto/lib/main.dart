@@ -5,9 +5,14 @@ void main() {
   runApp(MyApp());
 }
 
-class MyApp extends StatelessWidget {
+class MyApp extends StatefulWidget {
   MyApp({Key? key}) : super(key: key);
 
+  @override
+  State<MyApp> createState() => _MyAppState();
+}
+
+class _MyAppState extends State<MyApp> {
   bool opacidade = true;
 
   // This widget is the root of your application.
@@ -62,10 +67,14 @@ class MyApp extends StatelessWidget {
               ],
             ),
           ),
-          floatingActionButton: FloatingActionButton(onPressed: () {
-            opacidade = !opacidade;
-          },
-          child: Icon(Icons.remove_red_eye),),
+          floatingActionButton: FloatingActionButton(
+            onPressed: () {
+              setState(() {
+                opacidade = !opacidade;
+              });
+            },
+            child: Icon(Icons.remove_red_eye),
+          ),
         ));
   }
 }
