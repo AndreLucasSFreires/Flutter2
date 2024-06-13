@@ -84,7 +84,10 @@ class _TaskState extends State<Task> {
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
                       Container(
-                          color: Colors.black26,
+                          decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(4),
+                            color: Colors.black26,
+                          ),
                           width: 72,
                           height: 100,
                           child: Image.network(widget.foto, fit: BoxFit.cover)),
