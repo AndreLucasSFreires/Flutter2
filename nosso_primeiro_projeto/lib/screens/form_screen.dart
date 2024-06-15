@@ -58,6 +58,11 @@ class _FormScreenState extends State<FormScreen> {
                 padding: const EdgeInsets.all(8.0),
                 child: TextFormField(
                   //Possui um validator.
+                  onChanged: (text){
+                    setState((){
+                      
+                    });
+                  },
                   controller: imageController,
                   textAlign: TextAlign.center,
                   decoration: InputDecoration(
