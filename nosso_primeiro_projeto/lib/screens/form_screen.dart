@@ -78,6 +78,10 @@ class _FormScreenState extends State<FormScreen> {
                     color: Colors.blue,
                   ),
                 ),
+                child: ClipRRect( //child do container.
+                  borderRadius: BorderRadius.circular(10),
+                  child: Image.network(imageController.text), //child do ClipRRect
+                ),
               ),
               ElevatedButton(
                 onPressed: () {
