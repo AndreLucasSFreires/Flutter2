@@ -141,35 +141,12 @@ class _TaskState extends State<Task> {
                                     fontSize: 24,
                                     overflow: TextOverflow.ellipsis),
                               )),
-                          Row(
-                            children: [
-                              Icon(Icons.star,
-                                  size: 15,
-                                  color: (widget.dificuldade) >= 1
-                                      ? Colors.blue
-                                      : Colors.blue[100]),
-                              Icon(Icons.star,
-                                  size: 15,
-                                  color: (widget.dificuldade) >= 2
-                                      ? Colors.blue
-                                      : Colors.blue[100]),
-                              Icon(Icons.star,
-                                  size: 15,
-                                  color: (widget.dificuldade) >= 3
-                                      ? Colors.blue
-                                      : Colors.blue[100]),
-                              Icon(Icons.star,
-                                  size: 15,
-                                  color: (widget.dificuldade) >= 4
-                                      ? Colors.blue
-                                      : Colors.blue[100]),
-                              Icon(Icons.star,
-                                  size: 15,
-                                  color: (widget.dificuldade) >= 5
-                                      ? Colors.blue
-                                      : Colors.blue[100])
-                            ],
-                          )
+                          Dificulty(
+                              widget: widget,
+                              widget: widget,
+                              widget: widget,
+                              widget: widget,
+                              widget: widget)
                         ],
                       ),
                       Column(
@@ -263,6 +240,35 @@ class _TaskState extends State<Task> {
           ],
         ),
       ),
+    );
+  }
+}
+
+class Dificulty extends StatelessWidget {
+  const Dificulty({
+    Key? key,
+  }) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Row(
+      children: [
+        Icon(Icons.star,
+            size: 15,
+            color: (widget.dificuldade) >= 1 ? Colors.blue : Colors.blue[100]),
+        Icon(Icons.star,
+            size: 15,
+            color: (widget.dificuldade) >= 2 ? Colors.blue : Colors.blue[100]),
+        Icon(Icons.star,
+            size: 15,
+            color: (widget.dificuldade) >= 3 ? Colors.blue : Colors.blue[100]),
+        Icon(Icons.star,
+            size: 15,
+            color: (widget.dificuldade) >= 4 ? Colors.blue : Colors.blue[100]),
+        Icon(Icons.star,
+            size: 15,
+            color: (widget.dificuldade) >= 5 ? Colors.blue : Colors.blue[100])
+      ],
     );
   }
 }
