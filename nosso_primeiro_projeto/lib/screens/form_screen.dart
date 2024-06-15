@@ -8,6 +8,7 @@ class FormScreen extends StatefulWidget {
 }
 
 class _FormScreenState extends State<FormScreen> {
+  TextEditingController nameController = TextEditingController();
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -28,6 +29,7 @@ class _FormScreenState extends State<FormScreen> {
               Padding(
                 padding: const EdgeInsets.all(8.0),
                 child: TextFormField(//Possui um validator.
+                  controller: nameController,
                   textAlign: TextAlign.center,
                   decoration: InputDecoration(
                     border: OutlineInputBorder(),
