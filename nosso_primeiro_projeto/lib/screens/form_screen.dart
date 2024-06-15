@@ -60,7 +60,7 @@ class _FormScreenState extends State<FormScreen> {
                   //Possui um validator.
                   onChanged: (text){
                     setState((){
-                      
+
                     });
                   },
                   controller: imageController,
@@ -88,6 +88,9 @@ class _FormScreenState extends State<FormScreen> {
                   borderRadius: BorderRadius.circular(10),
                   child: Image.network(
                     imageController.text,
+                    errorBuilder: (BuildContext context, Object exception, StackTrace? stackTrace){
+                      return Container();
+                    },
                     fit: BoxFit.cover, //espaçamento
                   ), //child do ClipRRect
                 ),
