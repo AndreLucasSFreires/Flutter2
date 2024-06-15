@@ -44,6 +44,9 @@ class _InitialScreenState extends State<InitialScreen> {
                 'Ver Youtube',
                 'https://img-21.ccm2.net/Xzq57YZf4NBgVTpboohRrfgvWg4=/500x/22db3f0595ee4cb29016a4ef46e57dc1/ccm-faq/123rf_bloomua.jpg',
                 1),
+            SizedBox(
+              height: 80,
+            )
           ],
         ),
       ),
