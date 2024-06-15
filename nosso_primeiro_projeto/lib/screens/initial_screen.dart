@@ -22,27 +22,27 @@ class _InitialScreenState extends State<InitialScreen> {
           children: const [
             Task(
                 'Aprender Flutter',
-                'https://pbs.twimg.com/media/Eu7m692XIAEvxxP?format=png&name=large',
+                'assets/images/dash.png',
                 3),
             Task(
                 'Andar de Bike',
-                'https://images.pexels.com/photos/161172/cycling-bike-trail-sport-161172.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1',
+                'assets/images/bike.jpeg',
                 2),
             Task(
                 'Orar',
-                'https://files.adventistas.org/noticias/pt/2022/01/10d64508-aa34-44b6-8ca0-56e656d2714b.jpg',
+                'assets/images/oracao.jpg',
                 5),
             Task(
                 'Ler a biblia',
-                'https://www.miliciadaimaculada.org.br/source/files/c/7011/A_Biblia_Sagrada-249504_1208-800-0-0.jpg',
+                'assets/images/ler_a_biblia.jpg',
                 4),
             Task(
                 'Estudar 1',
-                'https://cdn.aprovadoapp.com.br/blog/midia/artigo4-capa.jpg',
+                'assets/images/estudar1.jpg',
                 5),
             Task(
                 'Ver Youtube',
-                'https://img-21.ccm2.net/Xzq57YZf4NBgVTpboohRrfgvWg4=/500x/22db3f0595ee4cb29016a4ef46e57dc1/ccm-faq/123rf_bloomua.jpg',
+                'assets/images/verYoutube.webp',
                 1),
             SizedBox(
               height: 80,
