@@ -70,7 +70,7 @@ class _FormScreenState extends State<FormScreen> {
               ElevatedButton(
                 onPressed: () {
                   print(nameController.text);
-                  print(difficultyController.text);
+                  print(int.parse(difficultyController.text));
                   print(imageController.text);
                 },
                 child: Text('Adicionar'),
