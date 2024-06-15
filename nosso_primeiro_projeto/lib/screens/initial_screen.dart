@@ -13,13 +13,13 @@ class _InitialScreenState extends State<InitialScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(leading: Container(), title: Text('Tarefas')),
+      appBar: AppBar(leading: Container(), title: const Text('Tarefas')),
       body: AnimatedOpacity(
         opacity: opacidade ? 1 : 0,
-        duration: Duration(milliseconds: 800),
+        duration: const Duration(milliseconds: 800),
         child: ListView(
           scrollDirection: Axis.vertical,
-          children: [
+          children: const [
             Task(
                 'Aprender Flutter',
                 'https://pbs.twimg.com/media/Eu7m692XIAEvxxP?format=png&name=large',
@@ -53,7 +53,7 @@ class _InitialScreenState extends State<InitialScreen> {
             opacidade = !opacidade;
           });
         },
-        child: Icon(Icons.remove_red_eye),
+        child: const Icon(Icons.remove_red_eye),
       ),
     );
   }

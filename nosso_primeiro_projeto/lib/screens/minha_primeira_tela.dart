@@ -66,7 +66,7 @@ class MyFirstWidget extends StatelessWidget {
             color: Colors.amber,
             height: 30,
             width: 270,
-            child: Text(
+            child: const Text(
               'Somos cristãos',
               style: TextStyle(color: Colors.pinkAccent, fontSize: 28),
               textAlign: TextAlign.center,
@@ -74,9 +74,9 @@ class MyFirstWidget extends StatelessWidget {
           ),
           ElevatedButton(
               onPressed: () {
-                print('Você apertou o botão');
+                // print('Você apertou o botão');
               },
-              child: Text('Aperte o botao!'))
+              child: const Text('Aperte o botao!'))
         ],
       ),
     );
