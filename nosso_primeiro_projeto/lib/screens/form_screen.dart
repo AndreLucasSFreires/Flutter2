@@ -62,9 +62,21 @@ class _FormScreenState extends State<FormScreen> {
                   textAlign: TextAlign.center,
                   decoration: InputDecoration(
                       border: OutlineInputBorder(),
-                      hintText: 'Imagem',
+                      hintText: 'url de Imagem',
                       fillColor: Colors.white70,
                       filled: true),
+                ),
+              ),
+              Container(
+                height: 100,
+                width: 72,
+                decoration: BoxDecoration(
+                  color: Colors.blue,
+                  borderRadius: BorderRadius.circular(10),
+                  border: Border.all(
+                    width: 2,
+                    color: Colors.blue,
+                  ),
                 ),
               ),
               ElevatedButton(
