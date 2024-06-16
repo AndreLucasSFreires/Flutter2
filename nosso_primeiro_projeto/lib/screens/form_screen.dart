@@ -46,8 +46,8 @@ class _FormScreenState extends State<FormScreen> {
                 ),
                 Padding(
                   padding: const EdgeInsets.all(8.0),
-                  child: TextFormField(
-                    //Possui um validator.
+                  child: TextFormField(//Possui um validator.
+                    keyboardType: TextInputType.number,
                     controller: difficultyController,
                     textAlign: TextAlign.center,
                     decoration: InputDecoration(
@@ -59,8 +59,8 @@ class _FormScreenState extends State<FormScreen> {
                 ),
                 Padding(
                   padding: const EdgeInsets.all(8.0),
-                  child: TextFormField(
-                    //Possui um validator.
+                  child: TextFormField(//Possui um validator.
+                    keyboardType: TextInputType.url,
                     onChanged: (text){
                       setState((){
 
