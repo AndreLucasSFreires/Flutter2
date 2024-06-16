@@ -1,0 +1,19 @@
+Aprendemos mais habilidades de criação de apps com o Flutter. Vamos revisar?
+
+Nesta aula, você aprendeu a:
+
+Evitar o erro de Overflow com o SingleChildScrollView:
+Evitamos que o teclado do celular oculte partes da tela. Como? Envolvemos o ´Container(responsável por toda tela) com um novo Widget: oSingleChildScrollView`. Assim, é possível scrollar e navegar pela tela, evitando a sobreposição do teclado.
+Facilitar a experiência do usuário com o KeyBoardType:
+
+Quando o usuário preenche um campo de texto de “nome”, é melhor chamar um teclado de letras (alfabético). Pensando nessa lógica, customizamos os teclados chamados por cada um dos campos de texto: o campo “nome” chama um teclado de letras; o campo “dificuldade” chama o teclado numérico; por fim, o campo “imagem” chama um teclado top para URLs.
+Impedir que informações vazias sejam enviadas pelo formulário:
+
+Aprendemos que é uma prática inadequada enviar nulos em um formulário. Não queremos exibir, por exemplo, uma tarefa sem título ou com outra informação faltando. Para evitar isso, utilizamos o validator - parâmetro do TextFormField. Dentro do validator, criamos uma condição para verificar se o campo contém uma informação ou um nulo.
+Monitorar as validações com o widget Form:
+Vimos que as validações precisam de alguém para cuidar delas. É aí que entra o novo Widget: Form! Ele é responsável por verificar as validações de forma mais simples.
+Mostrar ao usuário que a informação foi enviada com o Snackbar:
+Para dar mais clareza sobre o app, criamos uma barra na parte inferior da tela que informa, ao usuário, que as informações inseridas no formulário estão corretas e sendo salvas. A snackbar pertence ao Scaffold e aparece apenas quando todas as validações dão certo (e desaparece automaticamente)!
+Concluímos a Aula 2!
+
+Na próxima aula, vamos comentar sobre um conceitos e uma habilidade importantíssima na programação de apps. Vejo você lá!
