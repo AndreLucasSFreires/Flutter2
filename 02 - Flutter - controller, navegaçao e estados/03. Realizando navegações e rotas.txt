@@ -32,3 +32,27 @@ FormScreen(),
 );
 
 Navigator.pushNamed(context, '/form');
+
+
+
+Estamos na metade do caminho! Nesta aula, você aprendeu a:
+
+Entender os conceitos de navegação e rotas:
+
+Aprendemos dois conceitos importantes: navegação e rotas. No mundo real, navegação é o ato de ir de uma tela a outra; rota é o caminho de um lugar a outro. Em Flutter, o widget Navigator permite a navegação entre duas telas. Já routes, (“rotas”) são as telas que serão trocadas durante a navegação.
+Identificar os principais tipos de navegação:
+
+Conhecemos os fundamentos de navegação em Flutter:
+Navegação para apps: envolve um caminho único tanto na ida quanto na volta, uma tela por vez. Também, esse tipo de navegação é por meio de pilhas e se dá num modelo chamado de imperativo, mais linear e rígido;
+Navegação em websites: permite caminhos diversos, é mais dinâmica, há mais liberdade, segue o modelo declarativo - mais complexo. É chamada de navegação 2.0;
+Rotas anônimas: o jeito mais simples de ir de uma tela a outra em Flutter, utiliza o widget Navigator para adicionar ou retirar uma tela da pilha;
+Rotas nomeadas: dá nomes às telas, organizando a navegação e se aplica melhor a um app tem muitas telas. A configuração é mais trabalhosa.
+Aplicar a navegação entre duas telas em um app:
+Aplicamos a navegação da tela inicial para a tela de formulário. Em primeiro lugar, criamos um botão (FloatingActionButton) que ativa o Navigator.push para criar a rota entre as telas e adicionar uma tela na pilha; depois, na tela de formulário, dentro do botão “adicionar” (ElevatedButton), utilizamos um navigator.pop para tirar a tela de formulário da pilha, retornando o app à tela inicial. Assim, quando o usuário apertar no botão “adicionar” da tela de formulário, vai retornar à página inicial.
+Concluímos a Aula 3!
+
+Você desbloqueou uma importante habilidade no Flutter: navegar entre telas! E agora, vamos aprender como transmitir informações de uma tela/widget para outro e salvar a nossa tarefa?
+
+Se precisar tirar dúvidas, estamos lá no fórum ou discord!
+
+Bons estudos!
