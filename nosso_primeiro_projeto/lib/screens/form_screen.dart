@@ -52,6 +52,12 @@ class _FormScreenState extends State<FormScreen> {
                 Padding(
                   padding: const EdgeInsets.all(8.0),
                   child: TextFormField(//Possui um validator.
+                    validator: (value){
+                      if (value!.isEmpty || (int.parse(value) > 5 || int.parse(value) < 1)){
+                        return 'Insira uma dificuldade entre um (1) e cinco (5)';
+                      }
+                      return null;
+                    },
                     keyboardType: TextInputType.number,
                     controller: difficultyController,
                     textAlign: TextAlign.center,
