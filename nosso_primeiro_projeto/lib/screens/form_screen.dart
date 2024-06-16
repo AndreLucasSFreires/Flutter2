@@ -33,8 +33,13 @@ class _FormScreenState extends State<FormScreen> {
               children: [
                 Padding(
                   padding: const EdgeInsets.all(8.0),
-                  child: TextFormField(
-                    //Possui um validator.
+                  child: TextFormField(//Possui um validator.
+                    validator: (String? value){
+                      if (value != null && value.isEmpty){
+                        return 'Please, insira o nome da tarefa';
+                      }
+                      return null;
+                    },
                     controller: nameController,
                     textAlign: TextAlign.center,
                     decoration: InputDecoration(
