@@ -1,0 +1,34 @@
+No flutter, rotas são as telas em sí ( ou o objeto que será manipulado pelo navigator).
+
+tipos de navegação:
+em aplicativos:
+tanto na ida, quanto na volta, o mesmo percurso. (caminho único: imperativo, rudimentar, formato de pilha, linear, cansativa, porém simples)
+
+
+em Websites:
+declarativo, liberdade, complexo.
+
+
+Rotas anomimas:
+
+Navigator.push(
+	context,
+MaterialPageRoute(builder:
+(context) {
+	return FormScreen();
+}),
+
+para voltar: (retira tela da pilha, estoura)
+Navigator.pop(context);
+
+Rotas Nomeadas: (organizado, trabalhoso, para muitas telas)
+MaterialApp(
+routes: {
+'/': (context) =>
+InitialScreen(),
+'/form': (context) =>
+FormScreen(),
+},
+);
+
+Navigator.pushNamed(context, '/form');
