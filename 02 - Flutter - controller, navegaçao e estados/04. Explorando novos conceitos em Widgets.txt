@@ -1,0 +1,19 @@
+02. entendendo o que é estado:
+
+Aqui está um resumo da aula:
+A aula abordou o conceito de estado (state) em aplicativos Flutter.
+Estado se refere ao valor atual de uma variável ou objeto, que pode mudar ao longo do tempo.
+Existem dois tipos principais de estado:
+Ephemeral State: estado efêmero, local a um widget específico. É fácil de gerenciar pois envolve apenas um widget.
+App State: estado do aplicativo, que precisa ser compartilhado entre múltiplos widgets. É mais complexo de gerenciar.
+
+
+Para identificar se um estado é Ephemeral ou App State, deve-se considerar quantos widgets precisam daquele estado:
+Se apenas um widget precisa, é Ephemeral State.
+Se múltiplos widgets precisam, é App State.
+
+
+No contexto da aula, as informações das tarefas criadas no formulário precisam ser compartilhadas com a tela inicial, então se trata de um App State.
+O próximo passo é aprender como gerenciar esse App State de forma eficiente no Flutter.
+
+############################################################################################################33
