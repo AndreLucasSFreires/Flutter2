@@ -28,7 +28,7 @@ class TaskInherited extends InheritedWidget {
   }
 
   @override
-  bool updateShouldNotify(TaskInherited old) {
-    return;
+  bool updateShouldNotify(TaskInherited oldWidget) {//fica de olho no estado anterior da informação
+    return oldWidget.taskList.length != taskList.length;//notificar todos, pois a lista mudou de tamanho.
   }
 }
