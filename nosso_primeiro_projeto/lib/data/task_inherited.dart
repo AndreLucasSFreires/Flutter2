@@ -16,6 +16,10 @@ class TaskInherited extends InheritedWidget {
     Task('Ver Youtube', 'assets/images/verYoutube.webp', 1),
   ];
 
+  void newTask(String name, String photo, int difficulty){
+    taskList.add(Task(name, photo, difficulty));
+  }
+
   static TaskInherited of(BuildContext context) {
     final TaskInherited? result =
         context.dependOnInheritedWidgetOfExactType<TaskInherited>();
