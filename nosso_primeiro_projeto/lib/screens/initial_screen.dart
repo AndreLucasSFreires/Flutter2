@@ -18,12 +18,6 @@ class _InitialScreenState extends State<InitialScreen> {
       body: ListView(
         scrollDirection: Axis.vertical,
         children: const [
-          Task('Aprender Flutter', 'assets/images/dash.png', 3),
-          Task('Andar de Bike', 'assets/images/bike.jpeg', 2),
-          Task('Orar', 'assets/images/oracao.jpg', 5),
-          Task('Ler a biblia', 'assets/images/ler_a_biblia.jpg', 4),
-          Task('Estudar 1', 'assets/images/estudar1.jpg', 5),
-          Task('Ver Youtube', 'assets/images/verYoutube.webp', 1),
           SizedBox(
             height: 80,
           )
