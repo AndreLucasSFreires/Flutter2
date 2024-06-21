@@ -1,0 +1,159 @@
+Fiquei devendo duas explicações: sobre o Task Inherited Of(BuildContext context) e o UpdateShouldNotify(). Começaremos entendendo um pouco sobre o Update Should Notify para podermos usar a nossa lista.
+
+Update Should Notify
+task_inherited.dart
+
+// código omitido
+
+@override
+bool updateShouldNotify(TaskInherited oldWidget) {
+    return;
+}
+
+// código omitido
+COPIAR CÓDIGO
+O que é o Update Should Notify? Ele é o observador. Ele fica de olho no estado da nossa informação, na informação com a qual estamos lidando, que, no caso, é a nossa lista de tarefas.
+
+Como funciona esse Update Should Notify? Ele precisa de um Old Widget. O Old Widget fica de olho no estado anterior dessa informação.
+
+Vamos supor que a nossa lista de tarefas tem apenas cinco tarefas. Adicionamos uma nova tarefa e ela aumenta de tamanho. Adicionamos mais uma tarefa, aumenta de tamanho de novo. Vamos adicionando tarefas e essa lista vai mudando. Ou seja, o estado dessa lista muda.
+
+O tamanho dessa lista muda. As tarefas dentro dessa lista mudam. Estamos mudando essa informação. Alguém tem que ficar de olho no estado dessa informação.
+
+Temos a habilidade de ver o estado anterior dessa informação. E podemos comparar o estado anterior com o estado posterior da nossa informação. Esse nosso bool UpdateShouldNotify(), ele precisa de um booleano. Podemos colocar true no return, se quisermos.
+
+task_inherited.dart
+
+// código omitido
+
+@override
+bool updateShouldNotify(TaskInherited oldWidget) {
+    return true;
+}
+
+// código omitido
+COPIAR CÓDIGO
+O que significa colocar true no UpdateShouldNotify? Significa que ele vai ficar notificando todo mundo que está usando essa informação o tempo todo.
+
+Isso é bom? Não, porque se a informação não mudou, para que vamos ficar avisando os outros? Informando que a informação é a mesma o tempo todo? Isso prejudica a performance do nosso projeto.
+
+Não queremos ficar notificando todo mundo sobre essa diferença na nossa lista de tarefas repetidamente. Desejamos notificar apenas quando a lista de tarefas mudar.
+
+Como podemos fazer isso? Podemos começar usando o nosso oldWidget, que representa o estado anterior da nossa informação. O old widget reflete a nossa lista de tarefas anterior.
+
+E podemos, como task list é uma lista, verificar o que? Se está vazia, se tem tamanho. Podemos verificar o tamanho dessa lista. Então conseguimos verificar esse tamanho dessa lista usando length(). Podemos comparar o que? Se ela é diferente do tamanho da nossa lista atual. Ou seja, podemos passar taskList.length.
+
+task_inherited.dart
+
+// código omitido
+
+@override
+bool updateShouldNotify(TaskInherited oldWidget) {
+    return oldWidget.taskList.length != taskList.length;
+}
+
+// código omitido
+COPIAR CÓDIGO
+O oldWidget.taskList.length != taskList.length é um booleano. Então, estamos comparando esses dois.
+
+E a comparação vai retornar um booleano. Estamos comparando: no estado anterior, o tamanho da nossa lista é diferente do tamanho atual da nossa lista? Se o tamanho é diferente, o resultado é true e notificamos todo mundo.
+
+Se o resultado é igual, informamos que é false e não avisamos ninguém. Porque ninguém precisa saber que a lista não mudou de tamanho.
+
+É para isso que serve o nosso Update Should Notify.
+
+O conceito de Update Should Notify foi esclarecido. No entanto, ainda não abordamos o Of(Context). Vamos deixar essa explicação para o final, pois primeiro queremos utilizar essa informação. Criamos o nosso Task Inherited Widget, mas ainda não o utilizamos.
+
+Não estamos utilizando essa informação. O que desejamos? No nosso initial_screen, dentro do nosso ListView(), que contém essas tarefas estáticas, não queremos mais que sejam exibidas essas tarefas estáticas. Em vez disso, queremos exibir a lista que construímos.
+
+Como fazemos para usar a informação que está no nosso Task Inherited? Primeiro, criamos o nosso TaskInherited, mas não estamos usando ele ainda. Para usar ele, precisamos colocá-lo no nosso projeto.
+
+Por enquanto, é só um documento que está solto. Como fazemos isso? O nosso Task Inherited, para ele passar a informação que ele está lidando para os outros, ele precisa ser pai de todo mundo na árvore de widgets. Ele não precisa ser pai do widget específico. Ele só precisa ser pai de alguém lá em cima. Se ele estiver em cima desse widget, ele já consegue passar essa informação.
+
+Como podemos fazer isso? Precisamos escolher um lugar onde o nosso Task Inherited vai estar superior da nossa árvore de widgets em relação a todo mundo. Então, vamos lá no nosso main.dart, que é o nosso principal.
+
+Aqui embaixo, no nosso home, o que já iniciamos? Na nossa tela inicial (InicialScreen()). Portanto, nossa tela inicial é praticamente a primeira coisa que aparece. E queremos que nosso Task Inherited seja o pai dessa tela inicial.
+
+Deletamos então o const InitialScreen(). Logo após, digitamos Task Inherited, que é o widget que desejamos. E ele já está pedindo o child, que é obrigatório, de quando criamos o nosso TaskInherited.
+
+main.dart
+
+// código omitido
+
+home: TaskInherited(child: child),
+
+// código omitido
+COPIAR CÓDIGO
+Vamos revisar.
+
+Retornando ao nosso task_inherited, ele requer o widget child. Sempre é necessário ter um filho. Retornando ao main, ele já está requisitando um filho.
+
+Quem será o filho desse nosso Task Inherited? Agora sim, pode ser o nosso const, a nossa InitialScreen(). Então, nosso TaskInherited agora é a mãe principal do nosso projeto. Assim, todos podem acessar as informações da nossa taskList. Colocamos como pai ou mãe de todo mundo.
+
+Vamos no nosso initial_screen.dart, que é filho direto do nosso Task Inherited, mas não precisava ser filho direto. Contanto que seja filho de algum dos widgets que é filho do Task Inherited, já poderíamos acessar essa informação.
+
+Então, qual é a informação que desejamos modificar aqui? Em nosso ListView(), temos várias tarefas estáticas e fixas que não desejamos mais utilizar. Não queremos que elas estejam presentes aqui.
+
+Portanto, vamos excluí-las. Removemos tudo o que está dentro deste ListView, deixando-o vazio.
+
+initial_screen
+
+// código omitido
+
+body: ListView(
+    children: const [],
+),
+
+// código omitido
+COPIAR CÓDIGO
+Se fizermos um hot reload agora, as tarefas não estarão mais visíveis. Em vez de exibir essas tarefas, queremos utilizar nossa TaskList.
+
+No arquivo inicial_screen em const[]. Em vez de deixar esse colchete com uma lista vazia, podemos remover o const[] e inserir o TaskList. O nosso TaskList está onde? Ele está no nosso TaskInherited.
+
+initial_screen
+
+// código omitido
+
+body: ListView(
+    children: TaskInherited,
+),
+
+// código omitido
+COPIAR CÓDIGO
+É a nossa classe TaskInherited que nós criamos. E o TaskList é uma simples variável que está dentro dela. Desejamos acessar essa variável.
+
+Acessando a variável
+Como acessamos? Após o TaskInherited inserimos um ponto e escrevemos TaskList? Não. No caso, precisamos usar uma função. Um único método que podemos usar, que é o of(Context).
+
+initial_screen
+
+// código omitido
+
+body: ListView(
+    children: TaskInherited.of(context),
+),
+
+// código omitido
+COPIAR CÓDIGO
+Espera, o of(context) mencionado não é aquele método que você prometeu explicar no final da aula? Isso mesmo. Ao utilizarmos o of(context), podemos finalmente acessar as informações dentro do nosso TaskInherited. Agora, podemos inserir .taskList.
+
+initial_screen
+
+// código omitido
+
+body: ListView(
+    children: TaskInherited.of(context).takList,
+),
+
+// código omitido
+COPIAR CÓDIGO
+Isso nos permitirá visualizar a lista de tarefas. Agora temos acesso a ela. Clicamos no hot reload para executar o projeto e verificar quem está de volta. É o nosso taskList do Inherited.
+
+Mas e esse .of(context)? Quando começamos a abordar o of(context), não é algo tão simples. Não é algo que possamos explicar de forma tão simples em apenas alguns minutos.
+
+Conclusão e Próximos Passos
+Na verdade, entender o conceito de contexto e explicá-lo requer um pouco mais de tempo e paciência, pois é fundamental para uma compreensão completa. É por isso que adiamos a explicação do método static TaskInherited of(context) por tanto tempo.
+
+Portanto, vamos abordar como funciona o static TaskInherited of(context) explicando o que é contexto. O que exatamente o contexto significa no Flutter? Queremos ter certeza de que todos entendam completamente esse conceito, para não nos perdermos.
+
+Assim, abordaremos tudo isso na próxima aula!
