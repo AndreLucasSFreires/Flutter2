@@ -16,4 +16,4 @@ Se múltiplos widgets precisam, é App State.
 No contexto da aula, as informações das tarefas criadas no formulário precisam ser compartilhadas com a tela inicial, então se trata de um App State.
 O próximo passo é aprender como gerenciar esse App State de forma eficiente no Flutter.
 
-############################################################################################################33
+############################################################################################################

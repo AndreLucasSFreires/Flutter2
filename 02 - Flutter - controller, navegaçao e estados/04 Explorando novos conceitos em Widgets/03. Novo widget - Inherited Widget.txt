@@ -1,0 +1,260 @@
+Recapitulando: estamos na nossa Initial Screen (Tela Inicial) e desejamos ter a habilidade de capturar os dados do nosso formulário e voltar para a nossa tela inicial com esses dados. No entanto, por serem widgets diferentes, não conseguimos passar essa informação com tanta facilidade. Ou seja, precisamos de algo novo.
+
+Qual será essa nova ferramenta que vamos usar? Hoje, vamos aprender a usar um novo widget chamado Inherited Widget.
+
+Inherited Widget
+O Inherited Widget é o irmã do Stateful Widget e do Stateless Widget. É um widget de herança, responsável por manter informações. Ele guarda as informações e passa para quem precisar. Portanto, será mais fácil lidar com essas nossas informações em widgets diferentes usando o Inherited Widget.
+
+Vamos explicar passo a passo o que é o Inherited Widget, mas primeiro temos que pensar onde vamos criar esse nosso Inherited Widget. Será na nossa tela inicial? Não. Já conversamos sobre responsabilidades únicas. Portanto, o ideal é que tenha um novo documento.
+
+E onde vamos colocar esse novo documento? Será em telas? Será uma tela, esse Inherited Widget, que lida com as informações? Não. Ele não vai precisar aparecer na tela. Ele só lida com as informações. Então seria um componente? Não necessariamente, porque ele não vai construir nada na tela. Ele vai só guardar informações, tipo um back-end.
+
+Para realizar essa ação, iremos criar um novo diretório, uma nova pasta dentro do nosso lib. Então, clicamos com o botão direito em lib do lado esquerdo, vamos em "New" e criamos um "directory".
+
+Daremos o nome desse directory de data (dados). E dentro desse data, criaremos um novo Dart file (New > Dart File). Chamaremos isso de task_inherited, onde armazenaremos as informações das tarefas.
+
+Criando o Inherited Widget
+Como criamos um Inherited Widget? Assim como o Stateless ou o Stateful, temos um atalho. Você escreve "inh" e ele já vai te dar informação para criar um novo Inherited Widget. Basta teclar "Tab" e ele já vai criar para nós aqui.
+
+O que precisamos, primeiramente, é dar um nome para essa nossa nova classe. Então, vamos dar um nome aqui de TaskInherited entre o class e o extends.
+
+task_inherited.dart
+
+class TaskInherited extends InheritedWidget {
+
+// código omitido
+COPIAR CÓDIGO
+E ele está indicando com um sublinhado em vermelho, por quê? Porque o TaskInherited, ele precisa do nosso material importado. Assim como o Stateful e no Stateless. Então, vamos importar escolhendo a opção "import library 'package:flutter/material.dart'".
+
+task_inherited.dart
+
+import 'package:flutter/material.dart';
+
+class TaskInherited extends InheritedWidget {
+
+// código omitido
+COPIAR CÓDIGO
+Vamos revisar o que sabemos até agora e o que ainda não sabemos, vamos explicar detalhadamente.
+
+task_inherited.dart
+
+import 'package:flutter/material.dart';
+
+class TaskInherited extends InheritedWidget {
+  const TaskInherited({
+    Key? key,
+    required Widget child,
+  }) : super(key: key, child: child);
+
+// código omitido
+COPIAR CÓDIGO
+A classe que estamos chamando de TaskInherited está sendo derivada de um objeto chamado Inherited Widget, o qual estamos estudando no momento. Aqui, já definimos o construtor para TaskInherited, que obrigatoriamente necessita de um argumento chamado child.
+
+Temos o Static TaskInherited Of(BuildContext context), que vamos explicar para vocês, mas não vamos explicar agora, porque tem uma ordem para as coisas.
+
+task_inherited.dart
+
+// código omitido
+
+@override
+bool updateShouldNotify(TaskInherited old) {
+    return;
+}
+
+// código omitido
+COPIAR CÓDIGO
+E tem esse updateShouldNotify(), que também vamos explicar para vocês, mas não exatamente agora, porque precisamos que vocês entendam alguns detalhes antes de usarmos essas duas funções.
+
+Primeiramente, o que queremos com esse nosso TaskInherited Widget? Queremos manipular informações. Quais informações? Desejamos manipular as nossas tarefas.
+
+Então, vamos ter a habilidade de adicionar várias tarefas no nosso projeto. E podemos adicionar várias, podemos adicionar dezenas, centenas, se quisermos.
+
+Todas essas tarefas têm que ser manejadas. Inclusive, as tarefas que já vieram por default, ou as tarefas que já vieram de base, que no caso são essas tarefas que aparecem no nosso projeto: Aprender Flutter, andar de bike, meditar, ler, jogar, essas informações também precisam ser manejadas.
+
+Analisaremos o Initial Screen. No arquivo initial_screen.dart, se descermos um pouco, vamos ver que no Body do nosso ScareFold, temos um ListView, ou seja, uma lista de tarefas, que são essas nossas tarefas. E essas tarefas, andar de bike, meditar, ler, são as informações que vamos manipular, são partes dela.
+
+O ideal seria vir aqui na linha 31 depois dessa tarefa e adicionar uma nova tarefa, assistir Star Wars.
+
+initial_screen.dart
+
+// código omitido
+
+Task('Assistir Star Wars')
+
+// código omitido
+COPIAR CÓDIGO
+Manualmente, mas não é isso que queremos, desejamos que o nosso projeto faça isso sozinho. Então, temos que ter a habilidade de adicionar uma nova tarefa aqui nessa nossa lista. Podemos remover essa alteração manual.
+
+initial_screen.dart
+
+// código omitido
+
+body: ListView(
+    children: const [
+        Task('Aprender Flutter', 'assets/images/dash.png', 3),
+        Task('Andar de Bike', 'assets/images/bike.webp', 2),
+        Task('Meditar', 'assets/images/meditar.jpeg', 5),
+        Task('Ler', 'assets/images/livro.jpg', 4),
+        Task(
+            'Jogar',
+            'assets/images/jogar.jpg',
+            1,
+        ),
+
+// código omitido
+COPIAR CÓDIGO
+São exatamente essas tarefas que vamos manipular.
+
+O primeiro passo será acessar nosso task_inherited.dart e estabelecer uma lista nova. Precisaremos criar uma lista completamente nova. Retornaremos ao básico, ao Dart.
+
+Como criamos uma lista? Vamos declarar que essa lista é final. E para criar uma lista, temos que dizer que é uma List. E temos que dar um nome para essa lista.: TaskList. Vamos deixar essa lista vazia, por enquanto.
+
+task_inherited.dart
+
+// código omitido
+
+final List taskList = [];
+
+// código omitido
+COPIAR CÓDIGO
+Criamos a nossa lista.
+
+Nosso Inherited Widget está indicando um erro, porque o TaskInherited deixou de ser constante, porque ela recebeu uma lista. E essa lista vai ser variável. Então, não vai ser mais constante. Vamos deletar o const do nosso construtor.
+
+task_inherited.dart
+
+// código omitido
+
+class TaskInherited extends InheritedWidget {
+  TaskInherited({
+
+// código omitido
+COPIAR CÓDIGO
+Temos o nosso TaskList.
+
+Qual será incluído em nossa TaskList? Precisamos inserir diversos números: 1, 2, 3, 4, 5. Ele aceita isso. Mas o que buscamos? Buscamos Strings. O que queremos dentro dessa lista? Uma String, outra String e assim por diante? Não. Dentro dessa lista, buscamos tarefas.
+
+Ao colocarmos o nosso mouse em cima do TaskList, verificamos que é uma lista do tipo dinâmica. Ela recebe qualquer coisa, tanto de Strings, quanto nulos, quanto inteiros, quanto tarefas.
+
+Desejamos que seja uma lista apenas de tarefas. Para isso, vamos no nosso List e denominamos o tipo. Queremos que a nossa lista seja apenas de Task, que é o nosso modelo que criamos.
+
+task_inherited.dart
+
+// código omitido
+
+final List<Task> taskList = [];
+
+// código omitido
+COPIAR CÓDIGO
+A partir de agora, o nosso TaskList só aceita Task. Não aceita String, não aceita inteiro.
+
+Como colocamos uma Task dentro da nossa lista? Escrevemos Task. Ele já vai preencher para nós, se apertarmos "Tab", com uma nova tarefa.
+
+task_inherited.dart
+
+// código omitido
+
+final List<Task> taskList = [Task(nome, foto, dificuldade)];
+
+// código omitido
+COPIAR CÓDIGO
+E essa tarefa precisa de um nome, de uma foto, de uma dificuldade.
+
+Podemos adicionar diversas tarefas aqui. Copiamos a tak com "Ctrl + C"e colamos com "Ctrl + V" três vezes.
+
+task_inherited.dart
+
+// código omitido
+
+final List<Task> taskList = [
+        Task(nome, foto, dificuldade),
+        Task(nome, foto, dificuldade),
+        Task(nome, foto, dificuldade),
+        Task(nome, foto, dificuldade),
+    ];
+
+// código omitido
+COPIAR CÓDIGO
+Dessa forma, conseguimos incluir várias tarefas em nossa lista. No entanto, essas tarefas exigem um nome, uma descrição e uma dificuldade. Quais tarefas são essas? Elas já estão aqui, são nossas tarefas default.
+
+No nosso initial_screen, encontramos nossas tarefas no ListView na linha 22. Pegaremos todas elas, do Aprender até o Jogar. Lembrando de selecionar apenas as tarefas, excluindo o SizeBox, o Const e o ListView. Estamos criando uma lista delas.
+
+Voltamos ao task_inherited.
+
+Assim, retiraremos estas tarefas vazias que foram inseridas apenas como marcadores, e substituiremos por nossas tarefas padronizadas. Para manter a consistência visual, ajustaremos o formato de Jogar para que esteja em linha com as demais.
+
+task_inherited
+
+// código omitido
+
+final List<Task> taskList = [
+    Task('Aprender Flutter', 'assets/images/dash.png', 3),
+    Task('Andar de Bike', 'assets/images/bike.webp', 2),
+    Task('Meditar', 'assets/images/meditar.jpeg', 5),
+    Task('Ler', 'assets/images/livro.jpg', 4),
+    Task('Jogar', 'assets/images/jogar.jpg', 1),
+];
+
+// código omitido
+COPIAR CÓDIGO
+**Aqui está nossa lista de tarefas. **
+
+No nosso Inherited Widget, que gerencia as informações, estamos agora incluindo os dados. Qual é a grande vantagem disso? A vantagem é que, ao termos uma lista, podemos facilmente manipulá-la.
+
+Aqui no nosso initial_screen, não podíamos manipular com facilidade esse ListView adicionando uma nova tarefa. Mas no task_inherited, por ser uma lista, agora podemos. **Como assim adicionar uma nova tarefa? **
+
+Lembram quando estávamos aprendendo sobre listas no Dart, que a lista tem métodos que podemos manipular as variáveis dentro da lista, tanto adicionando quanto retirando? Então, é isso que vamos fazer agora.
+
+Adicionando uma nova tarefa
+Criaremos um novo método, uma nova função, capaz de adicionar uma nova tarefa à nossa lista.
+
+Proporemos aqui uma função void, a qual denominaremos newTask(). Esta newTask(), inicialmente, não requer nenhum parâmetro específico. Incorporaremos alguns parâmetros necessários, tais como uma string denominada name, outra string denominada photo, e um inteiro intitulado difficulty.
+
+task_inherited
+
+// código omitido
+
+void newTask(String name, String photo,int difficulty){
+    
+}
+
+// código omitido
+COPIAR CÓDIGO
+Agora, temos a capacidade de interagir com nossa taskList, que é o nosso objeto de lista. Para isso, vamos nos referir à taskList, e como é uma taskList, podemos usar o ponto para acessar diversos métodos.
+
+Como obter o tamanho dessa lista, inverter sua ordem, identificar o primeiro e o último elemento, ou ainda, utilizar o fantástico método chamado add(), que possibilita adicionar um novo objeto a essa lista.
+
+Que objeto pode ser? Apenas o tipo tarefa, não dá para adicionar um inteiro, não dá para adicionar uma string, mas dá para adicionar uma tarefa, Task, não TaskInherited, só Task.
+
+Queremos adicionar um novo Task, vamos botar ponto e vírgula no final da nossa linha de comando.
+
+task_inherited
+
+// código omitido
+
+void newTask(String name, String photo,int difficulty){
+    taskList.add(Task(nome, foto, dificuldade));
+}
+
+// código omitido
+COPIAR CÓDIGO
+Só que ele está pedindo aqui, nosso Task precisa de um nome, de uma foto e de uma dificuldade.
+
+Vamos abordar isso - já definimos os parâmetros necessários aqui: um name, um photo, e um difficulty serão incluídos nesta nova tarefa.
+
+task_inherited
+
+// código omitido
+
+void newTask(String name, String photo,int difficulty){
+    taskList.add(Task(name, photo, difficulty));
+}
+
+// código omitido
+COPIAR CÓDIGO
+Quando invocarmos nosso TaskInherited, poderemos adicionar uma nova tarefa à nossa lista.
+
+Conclusão e Próximos Passos
+Os dados já estão disponíveis em nosso Inherited Widget, e a função para adicionar uma nova tarefa à lista já está implementada. No entanto, até agora, não estamos aproveitando isso; o TaskInherited não está sendo utilizado em nenhum lugar.
+
+E é isso que pretendemos demonstrar a seguir: como podemos empregar este TaskInherited em outro contexto, e o que realmente são este TaskInherited of() e este Update Should Notify(), que ainda não explicamos, mas discutiremos em breve.
