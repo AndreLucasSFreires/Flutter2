@@ -19,7 +19,7 @@ class _InitialScreenState extends State<InitialScreen> {
       body: ListView(
         scrollDirection: Axis.vertical,
         children:
-        TaskInherited.of(context).taskList,
+        TaskInherited.of(context).taskList,//aqui é onde você encontra esse metodo, que pede um contexto e retorna esse objeto
       ),
       floatingActionButton: FloatingActionButton(
         onPressed: () {
