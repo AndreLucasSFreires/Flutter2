@@ -1,0 +1,24 @@
+Parabéns pela sua dedicação até aqui! Percorremos uma boa parte do caminho, desbloqueando técnicas e habilidades de Flutter.
+
+Nesta aula, você aprendeu a:
+
+Entender o conceito de estado em Flutter:
+
+Vimos que, para melhorar o app, era necessário entender o conceito de estado. Tal como uma caneca cheia ou vazia, as variáveis e objetos variam: têm estados diferentes. Por exemplo, uma string pode ter três estados - preenchido; vazio; ou nulo (três estados). Assim, no código, alguém precisa ficar de olho nas informações que estão mudando, o que é feito pelo setState, por exemplo.
+Distinguir entre estados efêmeros e estados do aplicativo:*
+
+Aprendemos a diferença entre ephemeral state (estados efêmeros que dizem respeito a um widget) e app state (em português, estados do aplicativo que pedem mais cuidado, pois o dado pertence a mais de um widget).
+Passar informações entre widgets com o InheritedWidget:
+
+Mais um Widget para a conta! O InheritedWidget é como um entregador de delivery - só recebe dados e passa de um widget para outro (é como se fosse o “back-end” do app). Ele é essencial para passar informações da tela de formulário para a tela inicial, mostrando a tarefa criada. Para permitir isso, refatoramos o código responsável pela nossa lista de tarefas! Além disso, vimos que era necessário configurar e acessar o InheritedWidget, transformando ele no pai de todos os widgets.
+Compreender o conceito de contexto:
+
+Em resumo, contexto é o local onde a informação se encontra. Por exemplo, a tela inicial é um contexto; a tela de formulário é outro lugar (contexto). Para se guiar, é possível utilizar a árvore de widgets para descobrir em qual contexto está uma informação. Por fim, nos aprofundamos no of(Context).
+Salvar uma tarefa na lista da tela inicial:
+
+Após compreender o conceito de contexto, implementamos a funcionalidade de salvar uma nova tarefa na tela inicial do app! Muito interessante, certo?
+Concluímos a Aula 4!
+
+Esta aula foi mais desafiadora, mas tratamos de conceitos importantíssimos e básicos. Bateu a dúvida? Estamos no fórum ou discord para ajudar.
+
+Estamos quase lá! Vejo você na última aula.
