@@ -6,16 +6,16 @@ class Task extends StatefulWidget {
   final String foto;
   final int dificuldade;
 
-  const Task(this.nome, this.foto, this.dificuldade, {Key? key})
+  Task(this.nome, this.foto, this.dificuldade, {Key? key})
       : super(key: key);
+
+  int nivel = 0;//alteramos de lugar essa variavel para não ser remontado.
 
   @override
   State<Task> createState() => _TaskState();
 }
 
 class _TaskState extends State<Task> {
-  int nivel = 0;
-
   bool assetOrNetwork() {
     if (widget.foto.contains('http')) {
       return false;
@@ -81,7 +81,7 @@ class _TaskState extends State<Task> {
                         ElevatedButton(
                             onPressed: () {
                               setState(() {
-                                nivel++;
+                                widget.nivel++;
                               });
                               //print(nivel);
                             },
@@ -99,7 +99,7 @@ class _TaskState extends State<Task> {
                         ElevatedButton(
                             onPressed: () {
                               setState(() {
-                                nivel--;
+                                widget.nivel--;
                               });
                               //print(nivel);
                             },
@@ -127,7 +127,7 @@ class _TaskState extends State<Task> {
                       child: LinearProgressIndicator(
                         color: Colors.white,
                         value: (widget.dificuldade > 0)
-                            ? (nivel / widget.dificuldade) / 10
+                            ? (widget.nivel / widget.dificuldade) / 10
                             : 1,
                       ),
                     ),
@@ -135,7 +135,7 @@ class _TaskState extends State<Task> {
                   Padding(
                     padding: const EdgeInsets.all(8.0),
                     child: Text(
-                      'Nivel $nivel',
+                      'Nivel ${widget.nivel}',
                       style: const TextStyle(color: Colors.white, fontSize: 16),
                     ),
                   ),
@@ -151,7 +151,7 @@ class _TaskState extends State<Task> {
                         })),
                         onPressed: () {
                           setState(() {
-                            nivel = 0;
+                            widget.nivel = 0;
                           });
                         },
                         child: const Text(
