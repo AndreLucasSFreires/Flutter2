@@ -12,12 +12,14 @@ class MyApp extends StatelessWidget {
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
+    return
+      TaskInherited(child:
+      MaterialApp(
         title: 'Flutter Demo',
         theme: ThemeData(
           primarySwatch: Colors.blue,
         ),
-        home: TaskInherited(child: const InitialScreen()));
+        home: const InitialScreen()));
   }
 }
 

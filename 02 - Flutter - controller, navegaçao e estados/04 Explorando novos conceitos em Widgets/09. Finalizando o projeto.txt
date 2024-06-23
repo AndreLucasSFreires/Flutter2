@@ -1,0 +1,121 @@
+Agora, vamos colocar a mão na massa. Precisamos fazer que, ao preencher todos os dados da tarefa e clicar no botão "Adicionar", atarefa seja adicionada na lista, que fica na tela inicial do nosso aplicativo.
+
+Integrando a adição de tarefas
+form_screen.dart
+
+Primeiro, analisaremos o código da tela de formulário. Nela, temos o ElevatedButton(), o botão de adicionar. Logo após a condição de validação, na linha 125, temos três prints das informações. Não queremos mais imprimir isso, queremos pegar essas informações e criar uma nova tarefa. Portanto, selecionamos as três linhas e pressionamos "Ctrl + /" para comentá-los.
+
+Após, temos a mensagem, o ScaffoldMessenger, que coloca um Scaffold escrito Printando nova tarefa. Como não queremos isso, mudamos para Criando uma nova tarefa.
+
+//Código omitido
+
+ElevatedButton(
+    onPressed: () {
+        if (_formKey.currentState!.validate()) {
+            // print(nameController.text);
+            // print(difficultyController.text);
+            // print(imageController.text);
+            
+        ScaffoldMessenger.of(context).showSnackBar (
+            const SnackBar (
+                content: Text('Criando uma nova Tarefa'),
+            ), // SnackBar
+        );
+        Navigator.pop(context);
+        }
+
+//Código omitido
+COPIAR CÓDIGO
+Depois, ele executa um pop e volta para a nossa tela inicial. É aqui que colocaremos a função de criar uma nova tarefa. Mas, como faremos isso?
+
+task_inherited.dart
+
+Nesse arquivo, temos o taskList, que é a lista de informações de todas as tarefas padrão. Também temos um método que criamos chamado newTask, que adiciona uma nova tarefa nessa lista de tarefas. Se temos uma função que adiciona uma nova tarefa na nossa lista completa de tarefas, é isso que queremos. Então, é isso que colocaremos no ElevatedButton().
+
+form_screen.dart
+
+Abaixo dos prints comentados, na linha 129, chamamos o Task Inherited.of(context). Agora, podemos passar . para buscar alguma informação nesse TaskInherited criado. Pode ser um taskList ou newTask, queremos a segunda opção. É o que queremos, a função newTask.
+
+Esse newTask precisa de um nome, foto e uma dificuldade. Para facilitar, colocamos ponto e vírgula no final do nosso código. No lugar de name passamos nameController.text, onde está a nossa informação, o campo de texto.
+
+Em photo passamos imageController.text e em difficulty passamos difficultyController, que é quem tem a informação da nossa dificuldade. Porém, se passarmos difficultyController.text, ele recusará. Isso porque, como aprendemos anteriormente, como discutimos anteriormente, isso é uma string e o Difficulty tem que ser um inteiro. Para não termos problemas, precisamos passar int.parse(difficultyController.text).
+
+//Código omitido
+
+TaskInherited.of(context).newTask(
+    nameController.text,
+    imageController.text,
+    int.parse(difficultyController.text));
+
+//Código omitido
+COPIAR CÓDIGO
+Já temos a nossa função de criar uma nova tarefa com o nome, a imagem e a dificuldade. No emulador, preenchermos os campos Nome, Dificuldade, Imagem e clicarmos em "Adicionar". Executará um pop, em seguida era para a tarefa aparecer na lista, porém isso não acontece.
+
+Isso aconteceu devido ao contexto. Então, vamos analisá-lo. No TaskInherited, se clicarmos na palavra context, na linha 130, veremos que ele ficará destacado em verde. A partir do momento em que ele fica destacado em verde, todos os contextos que são o mesmo contexto vão ficar destacados em verde.
+
+O contexto do scaffold está verde, assim como o Navigator.pop(). Na linha 19, repare que estamos criando o contexto a partir do momento em que ele constrói a tela. Então é um contexto novo, diferente de onde está nossa informação do Task Inherited.
+
+Nosso TaskInherited é pai da nossa tela inicial e esse contexto é novo. Então são contextos diferentes e a informação não é a mesma.
+
+Então não adianta tentar adicionar uma nova tarefa na lista, sendo que essa lista ele não visualizará. Precisamos passar o mesmo contexto para a nossa tela de formulário.
+
+initial_screen.dart
+
+Para isso, analisaremos a tela inicial. Temos o ListView() e o Context, é o contexto da tela inicial e possui nossa lista de tarefas. Se clicarmos em contex ele fica verde.
+
+Ao descer o código, notamos que tem o Navigator.push fazendo a navegação com o mesmo contexto base. Em seguida, o MaterialPageRoute constrói a tela de formulário usando um novo contexto. Mas, como assim?
+
+Observe que na linha 29, o builder pega um contexto e cria a tela de formulário. Esse contexto por algum motivo não está verde destacado. Isso significa que não é o mesmo contexto. Tanto que se clicarmos nele, ele fica verde e os outros não.
+
+Está criando um novo contexto para a nossa tela de formulário. Isso não funcionará, pois não conseguiremos nos comunicar entre dois contextos. Para podermos fazer isso, a tela de formulário precisa receber esse contexto.
+
+Para isso, precisamos passar uma informação para uma classe. Fazemos isso usando parâmetros, o formulário precisa pedir por esse contexto.
+
+form_screen.dart
+
+Sabendo disso, voltamos no formulário. Na linha 7, abaixo do construtor do FormScreen(), criamos um final que será um BuildContext e chamaremos de taskContext. Agora o nosso FormScreen mostra que precisa pedir o parâmetro.
+
+No construtor, como já fizemos anteriormente, passamos required this.taskContext. A partir de agora a tela de formulário, sempre pedirá por um contexto.
+
+//Código omitido
+
+class FormScreen extends StatefulWidget {
+  const FormScreen({Key? key, required this.taskContext}) : super(key: key);
+
+//Código omitido
+COPIAR CÓDIGO
+initial_screen.dart
+
+Se voltarmos na tela inicial, você irá perceber que, na linha 29, nosso formulário FormScreen() ficou sublinhado em vermelho, porque agora pede um contexto. Para isso, nos parênteses passamos taskContext: context. Feito isso, é possível notal que o contextque colocamos no FormScreen() é o mesmo da tela inicial, pois está verde.
+
+//Código omitido
+
+MaterialPageRoute
+    builder: (contextNew) => FormScreen(taskContext: context)
+
+//Código omitido
+COPIAR CÓDIGO
+form_screen.dart
+
+Estamos passando esse contexto para o formulário, agora precisamos usá-lo. Então voltamos para o form_screen.dart. No ElevatedButton, na linha 132, estamos no TaskInherited.of(Context). Mas novamente estamos usando o context criado para a tela de formulário. Não é o mesmo contexto que estamos usando na nossa tela inicial.
+
+Então, para mudar, na linha 132, apagamos o context e passamos o wisget.taskContext Agora estamos pegando o contexto trazido para o nosso formulário.
+
+//Código omitido
+
+TaskInherited.of(widget.taskContext).newTask(
+        nameController.text,
+        imageController.text,
+        int.parse(difficultyController.text));
+ScaffoldMessenger.of(context).showSnackBar(
+    const SnackBar(
+        content: Text('Criando uma nova Tarefa'),
+    ),
+
+//Código omitido
+COPIAR CÓDIGO
+Feito tudo isso, damos um hot reload para testar novamente. Após o projeto carregar no emulador, preenchemos os campos novamente e clicamos no botão "Adicionar".
+
+Feito isso, é exibido o scaffold criando uma nova tarefa e abaixo a tarefa é adicionada à lista. Deu certo! Porém, repare que agora temos um bug na imagem, ela não foi carregada.
+
+Descobriremos como corrigir isso na próxima aula. Até lá!
