@@ -1,0 +1,27 @@
+Habemus um aplicativo em que podemos criar e mostrar novas tarefas na tela inicial! O que achou?
+
+Nesta aula, você aprendeu a:
+
+Consertar o bug da imagem da tarefa:
+Oh não! O app estava quase finalizado, mas a imagem da tarefa não aparecia na tela inicial! Logo, você aprendeu a tratar esse bug. Como? Investigamos o código descobrimos que nossa tarefa só aceitava imagens do tipo Asstes , para resolver adicionamos um operador ternário com o assetOrNetwork que verifica se a informação de imagem é do tipo Network ou do tipo Asset, daí o nosso projeto sabe escolher qual Widget vai usar para mostrar a imagem.
+Aumentar a segurança do código com NullSafety
+
+Ao fim de um projeto, são boas práticas revisar o código, testar o projeto, e refatorar pontos que podem ser melhorados. Alguns desses pontos estavam relacionados aos validadores do TextFormField; em um deles, ignoramos a possibilidade do valor ser nulo - o que pode causar um problemão. Logo, corrigimos essas validações e adicionamos um Null Safety por segurança.
+Solucionar o bug que resetava o nível da tarefa
+
+Ao subir ou descer a tela, o app reseta a informação de nível da tarefa! Como impedir isso? Colocamos o int nível acima do @override, evitando o reset do estado quando a informação “sai” da tela. Também fizemos ajustes em todos os pontos do código em que aparece o nível.
+Concluímos a Aula 5!
+
+Parabéns pela sua dedicação! Neste curso, estudamos conceitos importantes de Flutter: Controller, formulários, navegação, estados e contexto. Para praticar essas habilidades, você implementou uma nova tela de formulários e a funcionalidade de criar uma nova tarefa e mostrá-la na tela inicial do app de organização de tarefas.
+
+Uhuull!! Acabou!!
+
+O que achou deste curso? Sentiu falta de alguma coisa? Percebeu algo diferente? O que você gostou? O que mudaria? Se possível, deixe um textinho curto contando como foi essa experiência pra você.
+
+Ouvimos sua opinião com muita atenção para melhorar nossos cursos!
+
+Lembre-se de que temos uma comunidade de estudantes mobile no Discord! Convidamos você a fazer parte, e tirar dúvidas ou até mesmo ajudar alguém. Ensinar é a melhor forma de aprender!
+
+E reforçando: gostaríamos de ler seu feedback (ok, parei!).
+
+Até a próxima!
