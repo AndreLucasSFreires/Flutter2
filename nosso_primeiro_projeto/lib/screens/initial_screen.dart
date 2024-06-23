@@ -18,8 +18,12 @@ class _InitialScreenState extends State<InitialScreen> {
       appBar: AppBar(leading: Container(), title: const Text('Tarefas')),
       body: ListView(
         scrollDirection: Axis.vertical,
-        children:
-        TaskInherited.of(context).taskList,//aqui é onde você encontra esse metodo, que pede um contexto e retorna esse objeto
+        children: TaskInherited.of(context).taskList,
+        //aqui é onde você encontra esse metodo, que pede um contexto e retorna esse objeto
+        padding: EdgeInsets.only(
+          top: 20,
+          bottom: 80,
+        ),
       ),
       floatingActionButton: FloatingActionButton(
         onPressed: () {

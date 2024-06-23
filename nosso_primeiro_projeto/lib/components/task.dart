@@ -16,6 +16,13 @@ class Task extends StatefulWidget {
 class _TaskState extends State<Task> {
   int nivel = 0;
 
+  bool assetOrNetwork() {
+    if (widget.foto.contains('http')) {
+      return false;
+    }
+    return true;
+  }
+
   @override
   Widget build(BuildContext context) {
     return Padding(
@@ -48,8 +55,10 @@ class _TaskState extends State<Task> {
                         height: 100,
                         child: ClipRRect(
                             borderRadius: BorderRadius.circular(4),
-                            child: Image.asset(widget.foto,
-                                fit: BoxFit.cover))),
+                            child: assetOrNetwork()
+                                ? Image.asset(widget.foto, fit: BoxFit.cover)
+                                : Image.network(widget.foto,
+                                    fit: BoxFit.cover))),
                     Column(
                       mainAxisAlignment: MainAxisAlignment.center,
                       crossAxisAlignment: CrossAxisAlignment.start,
@@ -62,7 +71,9 @@ class _TaskState extends State<Task> {
                                   fontSize: 24,
                                   overflow: TextOverflow.ellipsis),
                             )),
-                        Difficulty(dificultyLevel: widget.dificuldade,)
+                        Difficulty(
+                          dificultyLevel: widget.dificuldade,
+                        )
                       ],
                     ),
                     Column(
@@ -75,8 +86,7 @@ class _TaskState extends State<Task> {
                               //print(nivel);
                             },
                             child: Column(
-                              mainAxisAlignment:
-                              MainAxisAlignment.spaceEvenly,
+                              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                               crossAxisAlignment: CrossAxisAlignment.center,
                               children: const [
                                 Icon(Icons.arrow_drop_up),
@@ -133,7 +143,7 @@ class _TaskState extends State<Task> {
                     width: 60,
                     child: ElevatedButton(
                         style: ButtonStyle(backgroundColor:
-                        MaterialStateProperty.resolveWith((states) {
+                            MaterialStateProperty.resolveWith((states) {
                           if (states.contains(MaterialState.pressed)) {
                             return Colors.green;
                           }

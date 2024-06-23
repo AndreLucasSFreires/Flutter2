@@ -130,12 +130,10 @@ class _FormScreenState extends State<FormScreen> {
                         // print(nameController.text);
                         // print(int.parse(difficultyController.text));
                         // print(imageController.text);
-
                         TaskInherited.of(widget.taskContext).newTask(nameController.text,
                             imageController.text, int.parse(difficultyController
                                 .text))
                       ;
-
                       ScaffoldMessenger.of(context)
                           .showSnackBar(const SnackBar(
                       content: Text('Criando uma nova tarefa'),

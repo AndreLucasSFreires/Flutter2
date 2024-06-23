@@ -1,0 +1,69 @@
+Transcrição
+Temos um bug! E agora? Primeiramente, antes de resolvermos esse bug, gostaríamos de explicar que deixei esse bug acontecer, porque quero ensinar uma forma mais saudável de lidar com bugs.
+
+Vemos muitas pessoas que lidam com programação e ficam muito estressadas quando aparece um bug, especialmente no final de um projeto. E no final dos projetos é quando mais os bugs aparecem.
+
+E a verdade é que os bugs vão aparecer o tempo todo.
+
+Eles aparecem porque esquecemos algum detalhe ou porque não dominamos tanto a ferramenta. E tudo bem, ok? Se você está trabalhando, terminando um projeto, querendo terminar um projeto e aparece um bug, bom, você vai ficar com raiva. Nessas horas, levante, respire, medite, caminhe, ande de bicicleta. E aí você volta e resolve o bug. Arrume, ajuste, veja qual foi o problema. Mas não programe sentindo cansaço, estresse ou raiva. Um soco no computador não vai resolver.
+
+Então, como podemos resolver esse bug aqui? Vamos analisar como podemos encontrar a origem do bug, para entendermos. Nós adicionamos a nossa tarefa e, ao adicionar essa tarefa, a imagem não foi carregada na nossa lista de tarefas. Estranho, né?
+
+Por que isso pode ter acontecido? Vamos ver no nosso código onde está essa imagem. Não estamos mais no formulário, então, não é aqui que temos que procurar, estamos na tela inicial, o initial_screen.dart. Então, vamos no código da tela inicial.
+
+Então, lá no código da tela inicial, temos o ListView e ele busca uma lista de tarefas do nosso TaskInherited. Então, não é na nossa tela inicial mais, é na nossa lista de tarefas. Vamos lá na lista de tarefas.
+
+Então, no task_inherited.dart, temos nossa lista de tarefas que é composta por vários objetos do tipo Task que criamos. Então, um objeto tipo Task é onde precisamos encontrar o nosso bug. Vamos lá no nosso task.dart.
+
+Então, no task.dart que criamos, temos aqui nome, foto e dificuldade. Vamos procurar o lugar onde estamos manipulando a foto. Descendo um pouco, temos um Container, outro Container e entre as linhas 48 e 50, temos o nosso Image.asset que está recebendo a informação foto, que é um caminho, e ele está mostrando a nossa imagem com esse caminho.
+
+Mas o nosso image.asset está recebendo a informação que tem que ser um asset (recurso), tem que ser uma imagem que está dentro do projeto. E no caso, pegamos um URL, ou seja, um caminho da internet. E o image.asset não vai carregar um caminho da internet.
+
+Portanto, temos que usar algum artifício para que a nossa imagem seja carregada pela internet. Será que resolveria trocar image.asset para image.network? Não resolveria. Na verdade, ia dar mais problema. Porque se trocássemos, as imagens das nossas tarefas padrões não seriam lidas, porque elas são assets. Elas estão dentro do nosso projeto. Colocamos isso lá no nosso curso anterior.
+
+Então, não vai dar certo se só trocarmos. Então, temos que bolar uma estratégia para que ele possa ver o conteúdo que está vindo do nosso widget.foto e verificar se é um asset ou se é um URL. Se for um asset, vai usar o image.asset. Se for URL, vai usar o image.network. E assim, o nosso bug não vai acontecer.
+
+Como podemos arrumar isso? Já entendemos. Temos que fazer uma condição para verificar se ele é asset ou network. Então, podemos usar um operador ternário, que pode verificar se é true ou false para a nossa informação. E aí, se for verdadeiro, asset, se for falso, network ou contrário, vamos bolar aqui uma estratégia.
+
+Para isso, vamos subir aqui no Task. E aqui no nosso TaskState, na linha 18, embaixo do nosso nível igual a zero (int nivel = 0), vamos criar um novo método.
+
+Vamos criar um método booleano, ou seja, vai retornar um booleano e vou chamar ele de assetOrNetwork. Esse método precisa de um retorno. Então, posso simplesmente retornar true.
+
+Mas não está fazendo nada, seria mais fácil criar uma variável true. No nosso caso, vamos criar uma condição. Vamos usar um if e, dentro dele, vamos verificar se o nosso widget.foto, ou seja, a informação que está vindo, tem a informação de um HTTP.
+
+Então, como posso fazer isso? Posso apertar ponto e vão aparecer vários métodos que posso usar nesse nosso widget.foto. Dentre eles, temos o contains, para verificar se contém alguma informação específica.
+
+Então, vou usar esse novo método. Podemos colocar um string como parâmetro do método constains. E ele vai verificar se essa string está dentro da nossa informação widget.foto.
+
+Então, vou escrever 'http'. Se é um URL, ele vai possuir dentro do nosso caminho http. Se possui http, vamos retornar false. Se não possui a http, vai retornar true. Então, criamos um método que verifica se a nossa informação é da internet ou não.
+
+Agora, temos que colocar isso para funcionar. Então, vamos voltar em Image.asset. Então, no nosso child, vamos colocar um operador ternário. Vamos chamar o nosso assetsOrNetwork(). E aí, se for verdadeiro, retorna image.assets. Ou seja, se for verdadeiro, ele não é network.
+
+Agora, se for falso, ou seja, depois do image.assets, vamos tirar a vírgula que está gerando um aviso e colocar dois pontos. Se for falso, então queremos image.network. E aí, depois do image.network, vamos colocar a vírgula.
+
+E aí, o source que queremos é o widget.photo. Podemos fazer igual colocamos no nosso asset. Colocar um fit para ele caber corretamente. BoxFit.cover. Vamos pressionar Ctrl+ Alt + L para indentar o código. Pronto! Agora ele vai verificar se ele é do tipo asset ou do tipo network e o nosso bug vai estar resolvido.
+
+                        child: assetOrNetwork()
+                            ? Image.asset(
+                                widget.foto,
+                                fit: BoxFit.cover,
+                              )
+                            : Image.network(
+                                widget.foto,
+                                fit: BoxFit.cover,
+                              ),
+COPIAR CÓDIGO
+Vamos dar um hot reload. Ele vai recarregar completamente o nosso projeto. Nossa tarefa vai sumir, então temos que criá-la de novo. Então, vamos colocar nome para a tarefa, "Assistir Star Wars", de dificuldade 3, imagem do nosso Dash. Note que o dash vestido de Darth Vader está aqui. Vamos clicar em Adicionar. E agora que já estamos na nossa tarefa inicial, se arrastarmos para baixo, vai estar aqui o nosso Dash vestido de Darth Vader.
+
+Só tem algumas coisas aqui que voltaram a acontecer. Por exemplo, o nosso Floating Action Button está em cima da nossa última tarefa. Vamos arrumar isso de novo. Deve ter sumido quando colocamos a nossa lista de tarefas.
+
+Então vamos voltar lá na nossa tela inicial e aqui temos o nosso ListView com children. E podemos usar um novo parâmetro do ListView chamado padding e adicionar um EdgeInsets.only que vai ser no topo. Vou colocar top: 8 porque parece que na parte de cima ele está muito colado, o nosso AppendFlutter.
+
+E vamos colocar também no bottom: 70, que é o espaço do nosso dash. Então vou dar um hot reload. E agora temos o espaço. Por ter dado um hot reload, a nossa informação foi perdida, infelizmente.
+
+      body: ListView(
+        children: TaskInherited.of(context).taskList,
+        padding: EdgeInsets.only(top: 8,bottom: 70),
+      ),
+COPIAR CÓDIGO
+Recarregou o nosso aplicativo e essa informação não foi salva, né? Mas podemos colocar o nosso dash de novo. "Assistir Star Wars", dificuldade 3, imagem adicionada e botão Adicionar. E a última tarefa aparece agora, sem ficar atrás do botão flutuante. Agora que está tudo funcionando, existem alguns outros detalhes que queremos colocar no nosso projeto antes de encerrarmos esse curso. Então, até logo!
