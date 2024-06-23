@@ -1,0 +1,169 @@
+Transcrição:
+Em tese, finalizamos o nosso projeto, mas a verdade é que ainda não acabamos. Precisamos organizar o projeto, verificar se não deixamos nenhuma má prática e se o nosso projeto está bem estruturado. Vamos realizar alguns testes para verificar se nada está fora do lugar.
+
+Organização do projeto
+Vamos começar dando uma olhada na organização do nosso projeto. Na nossa biblioteca, temos os componentes, os dados e as telas. Conforme criamos novos documentos, já os deixamos organizados, o que é ótimo. Às vezes não é possível, e só no final do projeto conseguimos organizar, mas desta vez, conseguimos ir criando e organizando simultaneamente. Não precisamos criar nenhum novo documento ou diretório.
+
+Checando os validadores
+Agora, vamos verificar se não deixamos nenhuma má prática no nosso código. Temos um detalhe no nosso formulário. Criamos validadores e usamos esses validadores várias vezes no nosso código.
+
+No nosso form_screen.dart, na linha 46, temos a primeira validação, que é a validação do nome. Verificamos se o valor é diferente de nulo e depois verificamos se esse valor está vazio. Se estiver vazio, ele vai colocar o aviso para inserir o nome da tarefa. Se não estiver vazio, ele vai retornar nulo e não vai ter problema, é o nosso validador.
+
+Mas, e se quisermos usar essa condição novamente? A verdade é que usamos essa condição três vezes. E se usamos várias vezes, por que repetimos? Podíamos criar um método ou um booleano que represente isso. Então, temos algo para arrumar.
+
+Mas antes de arrumar isso, vamos ver os outros validadores, porque tem um detalhe importante para compartilhar. Na validação da dificuldade, temos uma validação um pouco diferente, porque ele verifica se a dificuldade está entre valores de 5 e 1, mas ele também verifica se o valor é diferente de nulo e se ele não está vazio. Só que ele está verificando de um jeito muito mais simples.
+
+Mas essa não é a melhor maneira de fazer a verificação. Estamos usando o null safety, usando a exclamação, presumindo que o valor é, de fato, diferente de nulo.
+
+Quando colocamos a exclamação, estamos apenas prometendo para o Flutter que esse valor é diferente de nulo. Não estamos verificando, apenas prometendo. Isso não é bom, porque pode ser que esse valor venha a ser nulo, eventualmente. E se ele for nulo, vai dar um problema. Então, não é bom manter essa forma de verificação de valores nulos, porque não é uma verificação, é uma suposição.
+
+Vamos alterar essa forma de verificar se ele é nulo e vazio para a forma como usamos na primeira verificação. Vamos usar a mesma forma, porque ela é mais segura.
+
+Por fim, vamos olhar a outra validação, que é a validação da URL, e ele também está verificando se o valor é vazio ou não. E, em vez de verificar se ele é nulo, ele está só presumindo que não é nulo. Então, vamos evitar usar isso e vamos mudar o nosso validador.
+
+Deixei essa forma mais simples e também quero que vocês tenham ciência das ferramentas que possuem, mas nem sempre tudo é uma boa prática. Então, vamos evitar de usar a exclamação por qualquer motivo. No futuro, podemos até usar para alguns outros detalhes, mas, hoje, vamos deixar da forma mais segura.
+
+Alterando os validadores
+No nosso formulário form_screen.dart, na linha 19, mais ou menos, depois do formKey, vamos criar um booleano chamado valueValidator. Esse valueValidator precisa receber uma string chamada Value, e essa string pode vir a ser nula, porque os nossos campos de texto podem estar nulos.
+
+Vamos criar a nossa condição if, e essa condição if é a mesma condição que temos nas nossas validações. Então, em vez de escrever, vamos copiar da linha 52, value != null && value.isEmpty. Valor diferente de nulo e valor está vazio.
+
+Vamos colar essa condição dentro dos parênteses do if. Se o valor está diferente de nulo e está vazio, vamos retornar um true, porque caso não seja nulo e esteja vazio, ele vai retornar a frase 'Insira o nome da Tarefa'. Se retornar false, ele vai para o outro lado do validador e não vai ter problema para enviar essa informação. Então, caso não, retorne false.
+
+  bool valueValidator(String? value){
+     if(value != null && value.isEmpty){
+       return true;
+     }
+     return false;
+COPIAR CÓDIGO
+Em vez de repetir essa informação, vamos usar o valueValidator. Então, vamos tirar o if(value != null && value.isEmpty) de dentro do TextFormField do nome, vou chamar valueValidator, e ele já pede aqui o nosso valor, que já está no nosso Validator, não precisamos mudar mais nada. E podemos reaproveitar isso aqui no futuro.
+
+child: TextFormField(
+    validator: (String? value) {
+        if (valueValidator(value)) {
+            return 'Insira o nome da Tarefa';
+        }
+        return null;
+    },
+COPIAR CÓDIGO
+Por exemplo, vamos deixar o nosso validador de dificuldade por último, porque temos que fazer mais uma coisa, mas no nosso validador de URL, posso chamar o nosso valueValidator. E pronto. Estamos reaproveitando o código sem ter que escrever muita coisa.
+
+                      validator: (value) {
+                        if (valueValidator(value)) {
+                          return 'Insira um URL de Imagem!';
+                        }
+                        return null;
+                      },
+COPIAR CÓDIGO
+Por fim, o nosso validador de dificuldade. Precisamos alterá-lo também. Só que, por ser um validador um pouco diferente, vamos criar um booleano só para ele também. Então, logo depois do nosso bool valueValidator, vamos criar um novo, que também é um bool, vou chamar difficultyValidator.
+
+Ele também precisa de uma string, que pode vir a ser nula, com um value. E aqui dentro, precisamos de uma condição. A primeira condição que precisamos é a condição básica de verificar se o valor é diferente de nulo e se esse valor não está vazio.
+
+Agora, tenho que verificar se esse valor está entre 1 e 5. Criamos, então, outra condição. Vamos lá embaixo, no nosso validador de dificuldade, e vamos copiar essa informação o int.parse, que verifica se o valor é entre 5 e 1.
+
+Vamos voltar para cima, e colá-lo no nosso segundo if. E ele vai verificar se esses valores estão, de fato, entre 1 e 5. Agora, podemos retornar um true. Caso o valor não seja entre 1 e 5, vamos retornar um false. Então, tem duas condições das quais precisamos sair. A primeira condição de numérica e a segunda condição de valores nulos ou vazios. Então, caso não, retorno false.
+
+bool difficultyValidator(String? value){
+    if(value != null && value.isEmpty){
+        if(int.parse(value) > 5 ||
+                int.parse(value) < 1){
+            return true;
+        }
+    }
+    return false;
+}
+COPIAR CÓDIGO
+Agora, temos o segundo validador, que é o de dificuldade, e podemos usá-lo na parte debaixo do código. Fica melhor, porque se precisarmos de um outro validador de dificuldade numérico, podemos só reaproveitá-lo. Então, é difficultyValidator, e ele já recebe o valor, e já está tudo organizado. Ótimas práticas para o nosso projeto.
+
+child: TextFormField(
+    validator: (value) {
+        if (difficultyValidator(value)) {
+            return 'Insira um Dificuldade entre 1 e 5';
+        }
+        return null;
+    },
+COPIAR CÓDIGO
+Realizando os testes finais
+Antes de encerrar, vamos só fazer alguns testes. Queremos mostrar mais uma coisa, que se não testarmos, pode dar um problema no nosso projeto. Vamos criar três tarefas. Nome "A", dificuldade 1, e a imagem do nosso dash.
+
+Vamos adicionar mais duas tarefas aleatórias, porque queremos mostrar esse problema que temos que resolver. Vamos adicionar mais uma tarefa, e, por fim, uma terceira tarefa.
+
+Estamos fazendo testes, estamos testando nosso projeto para ver qual é o limite dele. Colocamos mais três tarefas, não teve problema, não ficou lento. Mas queremos mostrar uma coisa que, se não mostrarmos, talvez vocês demorem muito para notar.
+
+Vamos pegar a tarefa "Aprender Flutter" e vamos aumentar de nível até, digamos, o nível 15. E aí vamos descer até lá embaixo, e vamos na nossa última tarefa que criamos, chamada de "C", e vamos aumentar até o nível 10.
+
+Só que se subirmos a tela até lá em cima no "Aprender Flutter", perdemos o nível. E se voltarmos lá embaixo para verificar a tarefa "C", perdemos o nível de novo. Por que isso está acontecendo?
+
+Quando subimos na nossa tela, a última tarefa que chamamos de "C", ela saiu da tela. Então, quando voltarmos a visualizá-la, o nosso widget está sendo reconstruído, e a informação de nível também está sendo reconstruída.
+
+Isso não é bom para nós, porque queremos ter várias tarefas. E se tiver 100 tarefas? Vamos perder a informação dessas tarefas? Como é que arrumamos isso? É muito simples.
+
+Vamos no nosso código Task. E lá no Task, vamos subir até encontrar a informação do nosso nível. A informação do nosso nível está na linha 17, logo embaixo do TaskState. O que acontece? Ele está no TaskState, ou seja, está no estado do Task, da tarefa. Quando saímos da tela, esse estado reseta.
+
+Para não perdermos essa informação do estado, vamos tirar esse int nível = 0 da classe TaskState e deixá-la na nossa classe Task StatefulWidget. Logo depois do construtor, na linha 12, antes do overwrite, sem ser a classe estado.
+
+class Task extends StatefulWidget {
+  final String nome;
+  final String foto;
+  final int dificuldade;
+
+  Task(this.nome, this.foto, this.dificuldade, {Key? key})
+      : super(key: key);
+
+  int nivel = 0;
+COPIAR CÓDIGO
+A partir de agora, o Task vai dizer que, ou inicializamos no construtor ou tiramos esse const do task. Vamos tirar o const, porque não queremos inicializar o nível. Queremos que esse nível seja 0 toda vez que criamos uma nova tarefa. Não queremos que esse nível suma sempre que ele sair da nossa tela.
+
+Agora, o nosso nível está no nosso stateful widget. E temos que alterar os lugares onde estamos usando o nível. Em vez de ser só nível, agora vai ser widget.nivel. E assim ele não vai mais ter nenhum problema no nosso código.
+
+SizedBox(
+    height: 52,
+    width: 52,
+    child: ElevatedButton(
+        onPressed: () {
+            setState(() {
+                widget.nivel++;
+            });
+            // print(nivel);
+        },
+        
+// Trecho de código suprimido
+
+Padding(
+    padding: const EdgeInsets.all(8),
+    child: SizedBox(
+        child: LinearProgressIndicator(
+            color: Colors.white,
+            value: (widget.dificuldade > 0)
+                ? (widget.nivel / widget.dificuldade) / 10
+                : 1,
+        ),
+        width: 200,
+    ),
+),
+
+// Trecho de código suprimido
+
+Padding(
+    padding: const EdgeInsets.all(12),
+    child: Text(
+        'Nivel: ${widget.nivel}',
+        style: const TextStyle(color: Colors.white, fontSize: 16),
+    ),
+)
+COPIAR CÓDIGO
+Aqui foi mais rápido, porque esses detalhes já vimos várias vezes. E já verificamos que estava tudo vermelho no scrollbar. Então, agora não vamos ter mais esse problema, mais um desastre evitado. Vamos dar um hot reload e por ter dado um hot reload, a nossa informação se foi.
+
+Então, tem uma última coisa que queremos passar para vocês, antes de verificar se o nosso erro foi resolvido. Adicionamos mais uma tarefa para não termos dúvidas.
+
+As nossas três tarefas carregaram. Vamos ver se resolveu o problema. Vamos colocar nível 7 na última tarefa. Vamos lá em cima no "Aprender Flutter". Vamos colocar ele em nível 4. E vou descer. Continua no 7. Se subir, continua no 4.
+
+Então, esse é um detalhe que é testando o código que notamos. Então, por fim, a última coisa que queríamos falar sobre esse nosso projeto, é que ele tem um ponto fraco. Ele não guarda informações. Se dermos um hot reload, se fecharmos nosso projeto, se desligarmos o celular e ligarmos de novo, todas as informações que criamos no nosso formulário vão ser perdidas.
+
+Porque o nosso projeto não está salvando essas informações fora do nosso aplicativo. Para poder manter essas informações, temos que salvar essas informações ou no celular ou no site e assim por diante. Então, esse é um ponto fraco do nosso projeto.
+
+Mas aprendemos a lidar com estados de um jeito bem simplista. Usando o Inherited Widget. Só que não é tão escalonável. Se tiver muitos tipos de estados para lidar, você vai ter problemas se ficar usando o Inherited Widget do jeito que usamos.
+
+Mais adiante, vamos aprender outros tipos de formas de gerenciar esses estados, essas variáveis, pacotes. Então, é importante mencionar esses detalhes de que o nosso projeto não salva as informações ainda e o gerenciamento de estados é uma coisa que ainda estamos desenvolvendo.
+
+Por enquanto, aprendemos um pouco, mas não dominamos tudo a respeito do tema. Então, respirem fundo, vamos em frente, e vejo vocês em breve. Até mais!
